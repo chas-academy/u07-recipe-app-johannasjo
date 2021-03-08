@@ -1,20 +1,33 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { RecipeListComponent } from './recipe-list/recipe-list.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
+import { HeaderComponent } from './header/header.component';
+import { RecipeLandingComponent } from './recipes/recipe-landing/recipe-landing.component';
+import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
-    RecipeListComponent
+    RecipeListComponent,
+    HeaderComponent,
+    RecipeLandingComponent,
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    HttpClientModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatButtonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
