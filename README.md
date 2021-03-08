@@ -25,3 +25,19 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Task
+
+- Hämta in listbar data över recept från antingen en json eller ett api via en service
+- Skapa en komponent som visar alla tillgängliga recept i någon form av sammanfattning (tänk poke-dex-exemplet)
+- Gör en komponent som tar in användardata i form av text-input och filtrerar data i sammanfattnings-komponenten utifrån vad som skrivs i inputfält i komponenten
+  Exempel: https://ng-pokedex.web.app/pokemon (men bygg funktionaliteten själv utan att tjuvkika på källkoden för pokemon-exemplet)
+
+- bonus: bygg in funktionaltiet som inte bara filtrerar på titel)
+  extra funktionalitet
+
+- ge användaren möjlighet att klicka på lägg-till-knapp för att lägga till ett recept i en egen lista av recept
+- bygg en komponent som visar en lista över titlarna de egenvalda recepten
+
+För inspo kolla:
+ng-pokedex.web.appng-pokedex.web.app
