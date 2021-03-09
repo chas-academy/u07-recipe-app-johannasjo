@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Meal } from '../meal.model';
 import { RecipesService } from '../recipes.service';
+import { ActivatedRoute } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,11 +16,18 @@ import { RecipesService } from '../recipes.service';
 export class RecipeListComponent implements OnInit {
   meals: Meal[] = [];
 
-  constructor(private recipesService: RecipesService) {}
+  constructor(
+    private recipesService: RecipesService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.recipesService
-      .getAll('chicken')
-      .subscribe((meals) => (this.meals = meals));
+    this.route.queryParams.subscribe((queryParams) => {
+      if ('categoryName' in queryParams) {
+        this.recipesService
+          .getAll(queryParams.categoryName)
+          .subscribe((meals) => (this.meals = meals));
+      }
+    });
   }
 }
