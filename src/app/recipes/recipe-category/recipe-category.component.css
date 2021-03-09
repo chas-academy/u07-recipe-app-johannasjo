@@ -3,6 +3,8 @@ a {
   text-decoration: none;
   display: flex;
   align-self: flex-start;
+  padding: 5px 0px;
+  font-size: 15pt;
 }
 
 a:hover {
@@ -10,4 +12,14 @@ a:hover {
   height: 30px;
   width: 100px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.active {
+  background-color: rgba(216, 212, 212, 0.5);
+  width: 100px;
+  height: 30px;
+  display: flex;
+  align-items: center;
 }
