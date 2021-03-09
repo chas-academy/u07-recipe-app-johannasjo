@@ -7,27 +7,21 @@ import { Category } from './mealCategory.model';
 import { HttpParams } from '@angular/common/http';
 
 interface ApiReply {
-  meals: Meal[];
+  categories: Category[];
 }
 
 @Injectable({
   providedIn: 'root',
 })
-export class RecipesService {
+export class CategoriesService {
   baseUrl: string;
   constructor(private http: HttpClient) {
     this.baseUrl = 'https://www.themealdb.com/api/json/v1/1';
   }
 
-  getAll(category?: string) {
-    let params = new HttpParams();
-
-    if (category) {
-      params = params.set('c', category);
-    }
-
+  getAll() {
     return this.http
-      .get<ApiReply>(`${this.baseUrl}/filter.php`, { params })
-      .pipe(map((apiReply) => apiReply.meals));
+      .get<ApiReply>(`${this.baseUrl}/categories.php`)
+      .pipe(map((apiReply) => apiReply.categories));
   }
 }

@@ -13,30 +13,9 @@ import { RecipesService } from '../recipes.service';
   styleUrls: ['./recipe-list.component.css'],
 })
 export class RecipeListComponent implements OnInit {
-  meals: Meal[] = [
-    {
-      idMeal: '52861',
-      strMeal: 'Peanut Butter Cheesecake',
-      strMealThumb:
-        'https://www.themealdb.com/images/media/meals/qtuuys1511387068.jpg',
-    },
-    {
-      idMeal: '52991',
-      strMeal: 'Peanut Butter Cheesecake',
-      strMealThumb:
-        'https://www.themealdb.com/images/media/meals/qtuuys1511387068.jpg',
-    },
-  ];
+  meals: Meal[] = [];
 
-  constructor(
-    private http: HttpClient,
-    private recipesService: RecipesService
-  ) {}
-  getRecipeList(): Observable<Meal[]> {
-    return this.http.get<Meal[]>(
-      'https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast'
-    );
-  }
+  constructor(private recipesService: RecipesService) {}
 
   ngOnInit(): void {
     this.recipesService

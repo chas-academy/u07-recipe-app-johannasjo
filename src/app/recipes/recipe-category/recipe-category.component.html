@@ -1,0 +1,10 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Categories</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p *ngFor="let category of categories$ | async">
+      {{ category.strCategory }}
+    </p></mat-card-content
+  >
+</mat-card>

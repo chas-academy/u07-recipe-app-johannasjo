@@ -11,12 +11,14 @@ import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component
 import { HeaderComponent } from './header/header.component';
 import { RecipeLandingComponent } from './recipes/recipe-landing/recipe-landing.component';
 import { AppRoutingModule } from './app-routing.module';
+import { RecipeCategoryComponent } from './recipes/recipe-category/recipe-category.component';
 @NgModule({
   declarations: [
     AppComponent,
     RecipeListComponent,
     HeaderComponent,
     RecipeLandingComponent,
+    RecipeCategoryComponent,
   ],
   imports: [
     BrowserModule,
