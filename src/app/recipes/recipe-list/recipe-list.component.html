@@ -9,3 +9,8 @@
     <button mat-button>SHARE</button>
   </mat-card-actions>
 </mat-card>
+
+<app-info-box
+  title="Please select a category on the left"
+  *ngIf="meals.length === 0"
+></app-info-box>

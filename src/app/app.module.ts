@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { RecipeLandingComponent } from './recipes/recipe-landing/recipe-landing.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeCategoryComponent } from './recipes/recipe-category/recipe-category.component';
+import { InfoBoxComponent } from './info-box/info-box.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { RecipeCategoryComponent } from './recipes/recipe-category/recipe-catego
     HeaderComponent,
     RecipeLandingComponent,
     RecipeCategoryComponent,
+    InfoBoxComponent,
   ],
   imports: [
     BrowserModule,
