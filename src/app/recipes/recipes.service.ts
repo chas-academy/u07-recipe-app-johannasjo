@@ -19,15 +19,21 @@ export class RecipesService {
     this.baseUrl = 'https://www.themealdb.com/api/json/v1/1';
   }
 
-  getAll(category?: string) {
-    let params = new HttpParams();
+  getAll(params: { categoryName?: string; search?: string }) {
+    let httpParams = new HttpParams();
 
-    if (category) {
-      params = params.set('c', category);
+    if (params.categoryName) {
+      console.log('this is the category');
+      httpParams = httpParams.set('c', params.categoryName);
+      return this.http
+        .get<ApiReply>(`${this.baseUrl}/filter.php`, { params: httpParams })
+        .pipe(map((apiReply) => apiReply.meals));
+    } else if (params.search) {
+      console.log('THis is the search');
+      httpParams = httpParams.set('s', params.search);
+      return this.http
+        .get<ApiReply>(`${this.baseUrl}/search.php`, { params: httpParams })
+        .pipe(map((apiReply) => apiReply.meals));
     }
-
-    return this.http
-      .get<ApiReply>(`${this.baseUrl}/filter.php`, { params })
-      .pipe(map((apiReply) => apiReply.meals));
   }
 }

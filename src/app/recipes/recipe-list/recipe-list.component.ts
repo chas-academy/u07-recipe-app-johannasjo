@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Meal } from '../meal.model';
 import { RecipesService } from '../recipes.service';
 import { ActivatedRoute } from '@angular/router';
+import { filter } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
@@ -23,9 +24,16 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((queryParams) => {
-      if ('categoryName' in queryParams) {
+      console.log(queryParams);
+      if ('categoryName' in queryParams && queryParams.categoryName) {
         this.recipesService
-          .getAll(queryParams.categoryName)
+          .getAll({ categoryName: queryParams.categoryName })
+          .pipe(filter((meals) => !!meals))
+          .subscribe((meals) => (this.meals = meals));
+      } else if ('search' in queryParams && queryParams.search) {
+        this.recipesService
+          .getAll({ search: queryParams.search })
+          .pipe(filter((meals) => !!meals))
           .subscribe((meals) => (this.meals = meals));
       }
     });

@@ -1,4 +1,6 @@
 <mat-form-field>
-  <input matInput placeholder="Placeholder" />
-  <mat-icon matSuffix>search</mat-icon>
+  <input [formControl]="inputValue" matInput placeholder="Search meal" />
+  <mat-icon matSuffix color="primary" (click)="onClick($event)"
+    >search
+  </mat-icon>
 </mat-form-field>
