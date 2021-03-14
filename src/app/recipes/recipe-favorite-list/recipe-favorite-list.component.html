@@ -1,0 +1,8 @@
+<h1>User list</h1>
+
+<ul *ngFor="let userRecipe of userRecipes">
+  <li>{{ userRecipe.title }}</li>
+  <button (click)="deleteRecipe(userRecipe.id)">Delete</button>
+</ul>
+
+<button (click)="addRecipe('5', 'Macaroni')">Add recipe to list</button>

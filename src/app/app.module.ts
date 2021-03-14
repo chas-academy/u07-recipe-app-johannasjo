@@ -18,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecipeCategoryComponent } from './recipes/recipe-category/recipe-category.component';
 import { InfoBoxComponent } from './info-box/info-box.component';
 import { RecipeSearchComponent } from './recipes/recipe-search/recipe-search.component';
+import { RecipeUserListComponent } from './recipes/recipe-favorite-list/recipe-favorite-list.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { RecipeSearchComponent } from './recipes/recipe-search/recipe-search.com
     RecipeCategoryComponent,
     InfoBoxComponent,
     RecipeSearchComponent,
+    RecipeUserListComponent,
   ],
   imports: [
     BrowserModule,
