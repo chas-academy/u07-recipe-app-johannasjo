@@ -4,6 +4,8 @@ import { Meal } from '../meal.model';
 import { RecipesService } from '../recipes.service';
 import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { RecipeFavoritesService } from '../recipe-favorites.service';
+import { randomIntFromInterval } from 'src/app/utils';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,7 +19,8 @@ export class RecipeListComponent implements OnInit {
 
   constructor(
     private recipesService: RecipesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private recipeFavoritesService: RecipeFavoritesService
   ) {}
 
   ngOnInit(): void {
@@ -34,5 +37,19 @@ export class RecipeListComponent implements OnInit {
           .subscribe((meals) => (this.meals = meals));
       }
     });
+
+    this.recipesService
+      .getFiveRandom()
+      .subscribe((meals) => (this.meals = meals));
+  }
+
+  addRecipe(id: string, title: string) {
+    this.recipeFavoritesService.addRecipe(id, title);
+  }
+
+  fiveRandomRecipes() {
+    return this.recipesService.getOne(
+      randomIntFromInterval(1, 1000).toString()
+    );
   }
 }

@@ -1,6 +1,6 @@
 .example-card {
-  max-width: 200px;
-  min-width: 80px;
+  max-width: 50%;
+  min-width: 10%;
 }
 
 :host {

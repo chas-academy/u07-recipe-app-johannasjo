@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Meal } from './meal.model';
 import { Category } from './mealCategory.model';
 import { HttpParams } from '@angular/common/http';
+import { forkJoin } from 'rxjs';
 
 interface ApiReply {
   meals: Meal[];
@@ -36,9 +37,26 @@ export class RecipesService {
   }
   // https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772
   getOne(id: string) {
+    console.log({ id });
     let httpParams = new HttpParams().set('i', id);
     return this.http
       .get<ApiReply>(`${this.baseUrl}/lookup.php`, { params: httpParams })
       .pipe(map((apiReply) => apiReply.meals[0]));
+  }
+
+  getOneRandom() {
+    return this.http
+      .get<ApiReply>(`${this.baseUrl}/random.php`)
+      .pipe(map((apiReply) => apiReply.meals[0]));
+  }
+
+  getFiveRandom() {
+    return forkJoin([
+      this.getOneRandom(),
+      this.getOneRandom(),
+      this.getOneRandom(),
+      this.getOneRandom(),
+      this.getOneRandom(),
+    ]);
   }
 }

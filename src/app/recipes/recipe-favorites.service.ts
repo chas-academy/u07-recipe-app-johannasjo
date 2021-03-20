@@ -1,29 +1,20 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecipeFavoritesService {
-  public userRecipes: { id: string; title: string }[] = [
-    { id: '1', title: 'Bolognese' },
-    { id: '2', title: 'Pancakes' },
-    { id: '3', title: 'Pizza' },
-  ];
+  public userRecipes$ = new BehaviorSubject([]);
   constructor() {}
 
   deleteRecipe(id: string) {
-    this.userRecipes = this.userRecipes.filter((recipe) => recipe.id !== id);
+    this.userRecipes$.next([
+      ...this.userRecipes$.getValue().filter((recipe) => recipe.id !== id),
+    ]);
   }
 
-  addRecipe(id: string = '5', title: string = 'New item') {
-    const userRecipesCopy = [...this.userRecipes];
-    userRecipesCopy.push({
-      id: id,
-      title,
-    });
-
-    this.userRecipes = userRecipesCopy;
-
-    // this.userRecipes = [...this.userRecipes, { id, title }];
+  addRecipe(id: string, title: string) {
+    this.userRecipes$.next([...this.userRecipes$.getValue(), { id, title }]);
   }
 }

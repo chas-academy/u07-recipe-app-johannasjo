@@ -8,7 +8,7 @@ import { RecipeFavoritesService } from '../recipe-favorites.service';
 })
 export class RecipeUserListComponent implements OnInit {
   constructor(private recipeFavoritesService: RecipeFavoritesService) {}
-  userRecipes = this.recipeFavoritesService.userRecipes;
+  userRecipes$ = this.recipeFavoritesService.userRecipes$;
   ngOnInit(): void {}
 
   addRecipe(id: string, title: string) {
