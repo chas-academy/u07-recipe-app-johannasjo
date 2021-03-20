@@ -1,7 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { Meal } from '../meal.model';
 import { RecipesService } from '../recipes.service';
 import { ActivatedRoute } from '@angular/router';
@@ -24,7 +22,6 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((queryParams) => {
-      console.log(queryParams);
       if ('categoryName' in queryParams && queryParams.categoryName) {
         this.recipesService
           .getAll({ categoryName: queryParams.categoryName })

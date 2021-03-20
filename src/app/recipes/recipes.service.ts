@@ -23,17 +23,22 @@ export class RecipesService {
     let httpParams = new HttpParams();
 
     if (params.categoryName) {
-      console.log('this is the category');
       httpParams = httpParams.set('c', params.categoryName);
       return this.http
         .get<ApiReply>(`${this.baseUrl}/filter.php`, { params: httpParams })
         .pipe(map((apiReply) => apiReply.meals));
     } else if (params.search) {
-      console.log('THis is the search');
       httpParams = httpParams.set('s', params.search);
       return this.http
         .get<ApiReply>(`${this.baseUrl}/search.php`, { params: httpParams })
         .pipe(map((apiReply) => apiReply.meals));
     }
+  }
+  // https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772
+  getOne(id: string) {
+    let httpParams = new HttpParams().set('i', id);
+    return this.http
+      .get<ApiReply>(`${this.baseUrl}/lookup.php`, { params: httpParams })
+      .pipe(map((apiReply) => apiReply.meals[0]));
   }
 }

@@ -1,0 +1,12 @@
+img {
+  display: flex;
+  align-self: start;
+  height: 40%;
+  width: 40%;
+  margin: 1em;
+}
+
+p {
+  display: flex;
+  max-width: 40%;
+}

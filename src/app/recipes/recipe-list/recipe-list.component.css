@@ -1,6 +1,6 @@
 .example-card {
-  max-width: 400px;
-  min-width: 200px;
+  max-width: 200px;
+  min-width: 80px;
 }
 
 :host {
@@ -10,3 +10,7 @@
   gap: 1em;
 }
 
+a {
+  color: #000;
+  text-decoration: none;
+}

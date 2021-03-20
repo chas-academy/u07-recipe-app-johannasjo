@@ -1,0 +1,22 @@
+<mat-card class="example-card" *ngIf="recipe">
+  <mat-card-header>
+    <mat-card-title>{{ recipe.strMeal }}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="{{ recipe.strMealThumb }}" alt="" />
+  <mat-card-content>
+    <p>{{ recipe.strInstructions }}</p>
+    <table>
+      <tr>
+        <th>Ingredients</th>
+        <th>Amount</th>
+      </tr>
+      <tr>
+        <td>{{ recipe.strIngredient }}</td>
+        <td>{{ recipe.strMeasure }}</td>
+      </tr>
+    </table>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>ADD</button>
+  </mat-card-actions>
+</mat-card>

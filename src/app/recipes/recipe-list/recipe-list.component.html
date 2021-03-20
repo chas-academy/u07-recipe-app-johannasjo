@@ -1,6 +1,8 @@
 <mat-card *ngFor="let meal of meals" class="example-card">
   <mat-card-header>
-    <mat-card-title>{{ meal.strMeal }}</mat-card-title>
+    <mat-card-title
+      ><a routerLink="{{ meal.idMeal }}">{{ meal.strMeal }}</a></mat-card-title
+    >
   </mat-card-header>
   <img mat-card-image src="{{ meal.strMealThumb }}" alt="" />
   <mat-card-content> </mat-card-content>
