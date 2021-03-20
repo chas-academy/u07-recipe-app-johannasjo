@@ -21,3 +21,21 @@ app-recipe-category {
 app-recipe-list {
   grid-area: main;
 }
+
+@media (max-width: 600px) {
+  :host {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+    "main";
+  }
+
+  app-recipe-category {
+    position: absolute;
+    top: 57px;
+    left: -300px;
+    z-index: 1;
+  }
+
+
+
+}

@@ -17,6 +17,8 @@
     </table>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>ADD</button>
+    <button mat-button (click)="addRecipe(recipe.idMeal, recipe.strMeal)">
+      ADD
+    </button>
   </mat-card-actions>
 </mat-card>

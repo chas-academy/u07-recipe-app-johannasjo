@@ -7,8 +7,9 @@
   <img mat-card-image src="{{ meal.strMealThumb }}" alt="" />
   <mat-card-content> </mat-card-content>
   <mat-card-actions>
-    <button (click)="addRecipe(meal.idMeal, meal.strMeal)">ADD</button>
-    <button mat-button>SHARE</button>
+    <button mat-button (click)="addRecipe(meal.idMeal, meal.strMeal)">
+      ADD
+    </button>
   </mat-card-actions>
 </mat-card>
 
