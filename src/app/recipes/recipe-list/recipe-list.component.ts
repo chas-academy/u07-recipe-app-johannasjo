@@ -43,8 +43,8 @@ export class RecipeListComponent implements OnInit {
       .subscribe((meals) => (this.meals = meals));
   }
 
-  addRecipe(id: string, title: string) {
-    this.recipeFavoritesService.addRecipe(id, title);
+  addRecipe(id: string, title: string, image?: string) {
+    this.recipeFavoritesService.addRecipe(id, title, image);
   }
 
   fiveRandomRecipes() {

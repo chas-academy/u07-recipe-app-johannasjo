@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeFavoritesService } from '../recipe-favorites.service';
-
 @Component({
   selector: 'app-recipe-favorite-list',
   templateUrl: './recipe-favorite-list.component.html',

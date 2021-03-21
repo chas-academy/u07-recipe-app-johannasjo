@@ -18,6 +18,11 @@ const routes: Routes = [
     path: 'favorites',
     component: RecipeUserListComponent,
   },
+  {
+    path: '',
+    redirectTo: '/recipes',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

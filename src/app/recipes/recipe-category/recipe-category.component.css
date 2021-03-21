@@ -23,3 +23,8 @@ a:hover {
   display: flex;
   align-items: center;
 }
+
+.category-card {
+  width: 100%;
+  min-width: 75%;
+}
