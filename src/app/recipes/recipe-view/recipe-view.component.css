@@ -1,12 +1,31 @@
-img {
+mat-card-content {
   display: flex;
-  align-self: start;
-  height: 40%;
-  width: 40%;
-  margin: 1em;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
 
-p {
+.recipe-image {
+  max-width: 50%;
   display: flex;
-  max-width: 40%;
+  flex-direction: column;
+  align-items: center;
+}
+
+img {
+  max-height: 85%;
+  max-width: 85%;
+}
+
+.ingredients {
+  align-self: flex-start;
+  max-width: 30%;
+  margin-top: 16px;
+}
+
+.instructions {
+  max-width: 80%;
+}
+
+.instructions > p {
+  line-height: 25px;
 }

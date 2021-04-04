@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { tap } from 'rxjs/operators';
 import { Meal } from '../meal.model';
 import { RecipeFavoritesService } from '../recipe-favorites.service';
 import { RecipesService } from '../recipes.service';
@@ -21,6 +22,7 @@ export class RecipeViewComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.recipesService
         .getOne(params.id)
+        .pipe(tap((value) => console.log(value)))
         .subscribe((recipe) => (this.recipe = recipe));
     });
   }
