@@ -44,7 +44,7 @@ export class RecipeListComponent implements OnInit {
   }
 
   addRecipe(id: string, title: string, image?: string) {
-    this.recipeFavoritesService.addRecipe(id, title, image);
+    this.recipeFavoritesService.add(id, title, image);
   }
 
   fiveRandomRecipes() {

@@ -10,11 +10,7 @@ export class RecipeUserListComponent implements OnInit {
   userRecipes$ = this.recipeFavoritesService.userRecipes$;
   ngOnInit(): void {}
 
-  addRecipe(id: string, title: string, image: string) {
-    this.recipeFavoritesService.addRecipe(id, title, image);
-  }
-
   deleteRecipe(id: string) {
-    this.recipeFavoritesService.deleteRecipe(id);
+    this.recipeFavoritesService.delete(id);
   }
 }

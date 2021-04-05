@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
@@ -20,7 +21,6 @@ import { InfoBoxComponent } from './info-box/info-box.component';
 import { RecipeSearchComponent } from './recipes/recipe-search/recipe-search.component';
 import { RecipeUserListComponent } from './recipes/recipe-favorite-list/recipe-favorite-list.component';
 import { RecipeViewComponent } from './recipes/recipe-view/recipe-view.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +46,7 @@ import { RecipeViewComponent } from './recipes/recipe-view/recipe-view.component
     ReactiveFormsModule,
     MatIconModule,
     FormsModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
