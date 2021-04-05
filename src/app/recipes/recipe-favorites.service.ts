@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 interface UserRecipe {
   id: string;
@@ -12,7 +13,7 @@ interface UserRecipe {
 })
 export class RecipeFavoritesService {
   public userRecipes$: BehaviorSubject<UserRecipe[]> = new BehaviorSubject([]);
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(private snackBar: MatSnackBar, private router: Router) {}
 
   delete(id: string) {
     this.userRecipes$.next([
@@ -22,9 +23,14 @@ export class RecipeFavoritesService {
 
   add(id: string, title: string, image?: string) {
     if (this.get(id)) {
-      this.snackBar.open('This recipe has already been added!', undefined, {
-        duration: 3000,
-      });
+      this.snackBar
+        .open('This recipe has already been added!', 'Show', {
+          duration: 5000,
+        })
+        .onAction()
+        .subscribe(() => {
+          this.router.navigateByUrl('favorites');
+        });
     } else {
       this.userRecipes$.next([
         ...this.userRecipes$.getValue(),

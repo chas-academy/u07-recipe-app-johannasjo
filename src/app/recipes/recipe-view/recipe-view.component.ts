@@ -28,7 +28,6 @@ export class RecipeViewComponent implements OnInit {
   }
 
   addRecipe(id: string, meal: string) {
-    console.log({ id, meal });
     this.recipeFavoritesService.add(id, meal);
   }
 }
