@@ -16,6 +16,7 @@ export class RecipeFavoritesService {
   constructor(private snackBar: MatSnackBar, private router: Router) {}
 
   delete(id: string) {
+    // send out new values from the observable
     this.userRecipes$.next([
       ...this.userRecipes$.getValue().filter((recipe) => recipe.id !== id),
     ]);
@@ -28,6 +29,7 @@ export class RecipeFavoritesService {
           duration: 5000,
         })
         .onAction()
+        // routes the observable object to fav-list
         .subscribe(() => {
           this.router.navigateByUrl('favorites');
         });
@@ -39,6 +41,7 @@ export class RecipeFavoritesService {
     }
   }
 
+  // check if recipe exists
   get(id: string) {
     return this.userRecipes$
       .getValue()

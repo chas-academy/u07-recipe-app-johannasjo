@@ -5,7 +5,11 @@
         <mat-card-title>{{ recipe.strMeal }}</mat-card-title>
       </mat-card-header>
       <img mat-card-image src="{{ recipe.strMealThumb }}" alt="" />
-      <button mat-button (click)="addRecipe(recipe.idMeal, recipe.strMeal)">
+      <!-- get properties of object and post to addRecipe function -->
+      <button
+        mat-button
+        (click)="addRecipe(recipe.idMeal, recipe.strMeal, recipe.strMealThumb)"
+      >
         ADD
       </button>
     </div>

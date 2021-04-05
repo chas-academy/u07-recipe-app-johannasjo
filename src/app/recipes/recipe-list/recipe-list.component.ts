@@ -25,9 +25,12 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((queryParams) => {
+      // check if string in route corresponds to property name:
+      // http://localhost:4200/recipes?categoryName=Seafood = {categoryName: "Seafood"}
       if ('categoryName' in queryParams && queryParams.categoryName) {
         this.recipesService
           .getAll({ categoryName: queryParams.categoryName })
+          // will return all meals and assign it to meals
           .pipe(filter((meals) => !!meals))
           .subscribe((meals) => (this.meals = meals));
       } else if ('search' in queryParams && queryParams.search) {

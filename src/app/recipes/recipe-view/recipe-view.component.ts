@@ -19,15 +19,17 @@ export class RecipeViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // get the id of the recipe from route: http://localhost:4200/recipes/52906 = {id: "52906"}
     this.route.params.subscribe((params) => {
+      // use getOne method of recipeService to access the meal
       this.recipesService
         .getOne(params.id)
-        .pipe(tap((value) => console.log(value)))
+        // assign recipe to the component so that it can be accessed from the template
         .subscribe((recipe) => (this.recipe = recipe));
     });
   }
 
-  addRecipe(id: string, meal: string) {
-    this.recipeFavoritesService.add(id, meal);
+  addRecipe(id: string, meal: string, image: string) {
+    this.recipeFavoritesService.add(id, meal, image);
   }
 }

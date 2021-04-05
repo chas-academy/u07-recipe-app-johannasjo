@@ -18,6 +18,7 @@ const routes: Routes = [
     path: 'favorites',
     component: RecipeUserListComponent,
   },
+  // default to recipes
   {
     path: '',
     redirectTo: '/recipes',

@@ -11,6 +11,7 @@ export class RecipeSearchComponent implements OnInit {
   constructor(private router: Router) {}
 
   onClick(event) {
+    // will go to the view the queryParams specifies (have to import Router to have access to .navigate)
     this.router.navigate([], {
       queryParams: { search: this.inputValue.value },
     });
