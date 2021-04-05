@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { Meal } from './meal.model';
 import { Category } from './mealCategory.model';
 import { HttpParams } from '@angular/common/http';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 
 export interface ApiMeal {
   idMeal: string;
@@ -78,34 +78,29 @@ export class RecipesService {
 
   getAll(params: { categoryName?: string; search?: string }) {
     let httpParams = new HttpParams();
-
+    let apiRequest: Observable<ApiReply> = null;
     if (params.categoryName) {
       httpParams = httpParams.set('c', params.categoryName);
-      return this.http
-        .get<ApiReply>(`${this.baseUrl}/filter.php`, { params: httpParams })
-        .pipe(
-          map((apiReply) => apiReply.meals),
-          map((apiMeals) =>
-            apiMeals.map((apiMeal) =>
-              this.formatMealIngredientsMeasures(apiMeal)
-            )
-          )
-        );
+      apiRequest = this.http.get<ApiReply>(`${this.baseUrl}/filter.php`, {
+        params: httpParams,
+      });
     } else if (params.search) {
       httpParams = httpParams.set('s', params.search);
-      return this.http
-        .get<ApiReply>(`${this.baseUrl}/search.php`, { params: httpParams })
-        .pipe(
-          map((apiReply) => apiReply.meals),
-          map((apiMeals) =>
-            apiMeals.map((apiMeal) =>
-              this.formatMealIngredientsMeasures(apiMeal)
-            )
-          )
-        );
+      apiRequest = this.http.get<ApiReply>(`${this.baseUrl}/search.php`, {
+        params: httpParams,
+      });
     }
+
+    return apiRequest.pipe(
+      // check in apiReply for meal info
+      map((apiReply) => apiReply.meals),
+      // for each meal in meals, format ingredients
+      map((apiMeals) =>
+        apiMeals.map((apiMeal) => this.formatMealIngredientsMeasures(apiMeal))
+      )
+    );
   }
-  // https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772
+
   getOne(id: string) {
     let httpParams = new HttpParams().set('i', id);
     return this.http
@@ -124,11 +119,13 @@ export class RecipesService {
         ingredientsMeasures.push({ measurement, ingredient });
       }
     }
+    // copy old info + new into object
     return { ...apiMeal, ingredientsMeasures };
   }
 
   getOneRandom() {
     return this.http.get<ApiReply>(`${this.baseUrl}/random.php`).pipe(
+      //get first meal
       map((apiReply) => apiReply.meals[0]),
       map((apiMeal) => this.formatMealIngredientsMeasures(apiMeal))
     );
