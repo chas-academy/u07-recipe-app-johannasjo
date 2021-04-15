@@ -1,41 +1,31 @@
-# RecipePracticeTask
+# Angular Recipe App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
+![Screenshot of the app](docs/images/screenshot.png)
 
-## Development server
+Angular Recipe App is (exactly as it sounds) a recipe app built in Angular (using Angular Material) as a school project. It is possible to search for a recipe or simply sort it by category.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Installation
 
-## Code scaffolding
+Use npm package manager (https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Clone the repo and run
 
-## Build
+```bash
+npm install
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+to get all dependencies
 
-## Running unit tests
+## The original task
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-## Task
-
-- Click a recipe to see all information (own route)
-- Save recipes to list
+- User can click a recipe to see all information (own route)
+- Save recipes to temporary list
   - Possible to delete recipes from this list
   - Possible to view this list (own route)
 - Filter recipes on different categories
 - Show a list of recipes
 
-## Requirements
+### task requirements
 
 - Angular 11
 - Use external API
