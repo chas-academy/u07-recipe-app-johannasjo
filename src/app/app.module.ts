@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { AppComponent } from './app.component';
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
@@ -33,7 +34,7 @@ import { RecipeSearchIngredientComponent } from './recipes/recipe-search-ingredi
     RecipeSearchComponent,
     RecipeUserListComponent,
     RecipeViewComponent,
-    RecipeSearchIngredientComponent,
+    RecipeSearchIngredientComponent
   ],
   imports: [
     BrowserModule,
@@ -49,8 +50,9 @@ import { RecipeSearchIngredientComponent } from './recipes/recipe-search-ingredi
     MatIconModule,
     FormsModule,
     MatSnackBarModule,
+    MatAutocompleteModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

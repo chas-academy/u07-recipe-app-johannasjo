@@ -68,7 +68,7 @@ interface ApiReply {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class RecipesService {
   baseUrl: string;
@@ -76,28 +76,31 @@ export class RecipesService {
     this.baseUrl = 'https://www.themealdb.com/api/json/v1/1';
   }
 
-  getAll(params: { categoryName?: string; search?: string }) {
+  getAll(params: { categoryName?: string; search?: string; ingredientName?: string }) {
     let httpParams = new HttpParams();
     let apiRequest: Observable<ApiReply> = null;
     if (params.categoryName) {
       httpParams = httpParams.set('c', params.categoryName);
       apiRequest = this.http.get<ApiReply>(`${this.baseUrl}/filter.php`, {
-        params: httpParams,
+        params: httpParams
       });
     } else if (params.search) {
       httpParams = httpParams.set('s', params.search);
       apiRequest = this.http.get<ApiReply>(`${this.baseUrl}/search.php`, {
-        params: httpParams,
+        params: httpParams
       });
+    } else if (params.ingredientName) {
+      httpParams = httpParams.set('i', params.ingredientName);
+      apiRequest = this.http.get<ApiReply>(`${this.baseUrl}/filter.php`, {
+        params: httpParams
+      });
+      console.log('nanting');
     }
-
     return apiRequest.pipe(
       // check in apiReply for meal info
-      map((apiReply) => apiReply.meals),
+      map(apiReply => apiReply.meals),
       // for each meal in meals, format ingredients
-      map((apiMeals) =>
-        apiMeals.map((apiMeal) => this.formatMealIngredientsMeasures(apiMeal))
-      )
+      map(apiMeals => apiMeals.map(apiMeal => this.formatMealIngredientsMeasures(apiMeal)))
     );
   }
 
@@ -106,8 +109,8 @@ export class RecipesService {
     return this.http
       .get<ApiReply>(`${this.baseUrl}/lookup.php`, { params: httpParams })
       .pipe(
-        map((apiReply) => apiReply.meals[0]),
-        map((apiMeal) => this.formatMealIngredientsMeasures(apiMeal))
+        map(apiReply => apiReply.meals[0]),
+        map(apiMeal => this.formatMealIngredientsMeasures(apiMeal))
       );
   }
   formatMealIngredientsMeasures(apiMeal: ApiMeal): Meal {
@@ -126,8 +129,8 @@ export class RecipesService {
   getOneRandom() {
     return this.http.get<ApiReply>(`${this.baseUrl}/random.php`).pipe(
       //get first meal
-      map((apiReply) => apiReply.meals[0]),
-      map((apiMeal) => this.formatMealIngredientsMeasures(apiMeal))
+      map(apiReply => apiReply.meals[0]),
+      map(apiMeal => this.formatMealIngredientsMeasures(apiMeal))
     );
   }
 
@@ -137,7 +140,7 @@ export class RecipesService {
       this.getOneRandom(),
       this.getOneRandom(),
       this.getOneRandom(),
-      this.getOneRandom(),
+      this.getOneRandom()
     ]);
   }
 }
