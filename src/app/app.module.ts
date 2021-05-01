@@ -21,6 +21,7 @@ import { InfoBoxComponent } from './info-box/info-box.component';
 import { RecipeSearchComponent } from './recipes/recipe-search/recipe-search.component';
 import { RecipeUserListComponent } from './recipes/recipe-favorite-list/recipe-favorite-list.component';
 import { RecipeViewComponent } from './recipes/recipe-view/recipe-view.component';
+import { RecipeSearchIngredientComponent } from './recipes/recipe-search-ingredient/recipe-search-ingredient.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { RecipeViewComponent } from './recipes/recipe-view/recipe-view.component
     RecipeSearchComponent,
     RecipeUserListComponent,
     RecipeViewComponent,
+    RecipeSearchIngredientComponent,
   ],
   imports: [
     BrowserModule,
