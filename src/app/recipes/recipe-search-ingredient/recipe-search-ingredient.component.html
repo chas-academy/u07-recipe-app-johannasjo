@@ -1,1 +1,12 @@
-<p>recipe-search-ingredient works!</p>
+<mat-form-field>
+    <input
+      [formControl]="inputValue"
+      (keydown.enter)="onClick($event)"
+      matInput
+      placeholder="Search ingredient"
+    />
+    <mat-icon matSuffix color="primary" (click)="onClick($event)"
+      >search
+    </mat-icon>
+  </mat-form-field>
+  

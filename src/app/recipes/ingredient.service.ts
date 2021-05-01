@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
 import { Ingredient } from "./ingredient.model";
@@ -18,8 +18,10 @@ export class IngredientService {
   }
 
   getAll() {
+    let httpParams = new HttpParams();
+    httpParams = httpParams.set('i', 'list');
     return this.http
-      .get<ApiReply>(`${this.baseUrl}/list.php`)
+      .get<ApiReply>(`${this.baseUrl}/list.php`, {params: httpParams})
       .pipe(map((apiReply) => apiReply.meals));
   }
 }
