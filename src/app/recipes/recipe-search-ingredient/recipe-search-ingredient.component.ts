@@ -29,14 +29,15 @@ export class RecipeSearchIngredientComponent implements OnInit {
           : []
       )
     );
-    this.ingredientService.getAll().subscribe(ingredients => console.log(ingredients));
     this.ingredientService.getAll().subscribe(ingredients => (this.ingredients = ingredients));
   }
 
   onClick(event) {
     // will go to the view the queryParams specifies (have to import Router to have access to .navigate)
     this.router.navigate([], {
-      queryParams: { searchByIngredient: this.inputValue.value }
+      queryParams: {
+        searchByIngredient: this.inputValue.value === '' ? null : this.inputValue.value
+      }
     });
   }
 }

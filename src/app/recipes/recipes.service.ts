@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 import { Meal } from './meal.model';
 import { Category } from './mealCategory.model';
@@ -94,11 +94,11 @@ export class RecipesService {
       apiRequest = this.http.get<ApiReply>(`${this.baseUrl}/filter.php`, {
         params: httpParams
       });
-      console.log('nanting');
     }
     return apiRequest.pipe(
       // check in apiReply for meal info
       map(apiReply => apiReply.meals),
+      filter(apiMeals => !!apiMeals),
       // for each meal in meals, format ingredients
       map(apiMeals => apiMeals.map(apiMeal => this.formatMealIngredientsMeasures(apiMeal)))
     );
