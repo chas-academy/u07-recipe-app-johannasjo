@@ -30,4 +30,5 @@ Route::group([
     Route::get('/recipes', [RecipeController::class, 'index']);
     Route::get('/recipes/{id}', [RecipeController::class, 'show']);
     Route::delete('/recipes/{id}', [RecipeController::class, 'destroy']);
+    Route::post('/recipes', [RecipeController::class, 'store']);
 });

@@ -35,7 +35,7 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      return Recipe::create($request->all());
     }
 
     /**
