@@ -14,7 +14,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        //
+        return Recipe::all();
     }
 
     /**
@@ -44,9 +44,9 @@ class RecipeController extends Controller
      * @param  \App\Models\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function show(Recipe $recipe)
+    public function show(Recipe $recipe, $id)
     {
-        //
+        return Recipe::find($id);
     }
 
     /**
