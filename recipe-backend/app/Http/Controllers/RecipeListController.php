@@ -46,7 +46,23 @@ class RecipeListController extends Controller
      */
     public function store(Request $request)
     {
-        return RecipeList::create($request->all());
+        $storeData = $this->validate($request, [
+            'list_title' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        $list = RecipeList::create($storeData);
+
+        if($this->user->recipeList()->save($list))
+            return response()->json([
+                'success' => true,
+                'list' => $list 
+            ]);
+            else
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Unfortunately your list could not be saved',
+                ]);
     }
 
     /**
@@ -57,7 +73,7 @@ class RecipeListController extends Controller
      */
     public function show(RecipeList $recipeList, $id)
     {
-       /*  $list = $this->user->recipeList()->find($id);
+        $list = $this->user->recipeList()->find($id);
 
         Log::info('Getting the user id' . var_dump($list));
 
@@ -68,7 +84,7 @@ class RecipeListController extends Controller
             ], 400);
         }
 
-        return $list; */
+        return $list;
     }
 
     /**
