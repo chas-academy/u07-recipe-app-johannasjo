@@ -11,7 +11,7 @@ class RecipeListController extends Controller
 
     public function __construct() {
         $this->middleware('auth:api');
-        /* $this->user = auth()->user(); */
+        $this->user = auth()->user();
     }
   
     /**
