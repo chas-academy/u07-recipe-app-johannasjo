@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class RecipeController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth:api');
+        /* $this->user = auth()->user(); */
+    }
+    
     /**
      * Display a listing of the resource.
      *

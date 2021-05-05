@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\RecipeListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +32,8 @@ Route::group([
     Route::get('/recipes/{id}', [RecipeController::class, 'show']);
     Route::delete('/recipes/{id}', [RecipeController::class, 'destroy']);
     Route::post('/recipes', [RecipeController::class, 'store']);
+
+    Route::get('/recipe-lists', [RecipeListController::class, 'index']);
+    Route::get('/recipe-lists/{id}', [RecipeListController::class, 'show']);
+    Route::post('/recipe-lists', [RecipeListController::class, 'store']);
 });

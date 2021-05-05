@@ -16,7 +16,7 @@ class CreateRecipeListsTable extends Migration
         Schema::create('recipe_lists', function (Blueprint $table) {
             $table->id();
             $table->string('list_title');
-            $table->foreignId('user_id')->constrained()->onDelete('cascades');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
