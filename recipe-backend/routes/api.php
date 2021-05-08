@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RecipeController;
-use App\Http\Controllers\RecipeListController;
+use App\Http\Controllers\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +26,14 @@ Route::group([
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::get('/user-profile', [AuthController::class, 'userProfile']); 
+    Route::get('/user-profile', [AuthController::class, 'userProfile']);
+
+    Route::get('/recipes', [RecipeController::class, 'index']);
+    Route::get('/recipes/{id}', [RecipeController::class, 'show']);
+
+    // many to many relationship described through nestled route:
+    Route::delete('/favorites/{id}/recipes/{id}', [RecipeController::class, 'destroy']);
+    Route::post('/favorites/{id}/recipes', [RecipeController::class, 'store']);
 });
 
 
@@ -35,15 +42,10 @@ Route::group([
     'prefix' => 'auth',
 
 ], function ($router) {
-    
-    Route::get('/recipes', [RecipeController::class, 'index']);
-    Route::get('/recipes/{id}', [RecipeController::class, 'show']);
-    Route::delete('/recipes/{id}', [RecipeController::class, 'destroy']);
-    Route::post('/recipes', [RecipeController::class, 'store']);
 
-    Route::get('/recipe-lists', [RecipeListController::class, 'index']);
-    Route::get('/recipe-lists/{id}', [RecipeListController::class, 'show']);
-    Route::post('/recipe-lists', [RecipeListController::class, 'store']);
-    Route::put('/recipe-lists/{id}', [RecipeListController::class, 'update']);
-    Route::delete('/recipe-lists/{id}', [RecipeListController::class, 'destroy']);
+    Route::get('/favorites', [FavoriteController::class, 'index']);
+    Route::get('/favorites/{id}', [FavoriteController::class, 'show']);
+    Route::post('/favorites', [FavoriteController::class, 'store']);
+    Route::put('/favorites/{id}', [FavoriteController::class, 'update']);
+    Route::delete('/favorites/{id}', [FavoriteController::class, 'destroy']);
 });

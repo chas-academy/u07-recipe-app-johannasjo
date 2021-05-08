@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRecipeListsTable extends Migration
+class CreateFavoritesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateRecipeListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('recipe_lists', function (Blueprint $table) {
+        Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->string('list_title');
+            $table->string('title');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreateRecipeListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recipe_lists');
+        Schema::dropIfExists('favorites');
     }
 }

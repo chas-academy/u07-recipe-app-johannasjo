@@ -10,4 +10,9 @@ class Recipe extends Model
     use HasFactory;
 
     protected $fillable = ['title'];
+
+    public function recipeList()
+    {
+        return $this->belongsToMany(Favorite::class);
+    }
 }

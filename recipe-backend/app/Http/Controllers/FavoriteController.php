@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RecipeList;
+use App\Models\Favorite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class RecipeListController extends Controller
+class FavoriteController extends Controller
 {
 
     public function __construct()
@@ -25,7 +25,7 @@ class RecipeListController extends Controller
 
         /*   Log::info('Getting the user id' . var_dump($this->user)); */
 
-        return $this->user->recipeList()->get(['list_title']);
+        return $this->user->favorite()->get(['list_title']);
     }
 
     /**
@@ -51,7 +51,7 @@ class RecipeListController extends Controller
             ], 403);
         }
 
-        $list = RecipeList::create($storeData)->save();
+        $list = Favorite::create($storeData)->save();
 
         if ($list)
             return response()->json([
@@ -68,12 +68,12 @@ class RecipeListController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\RecipeList  $recipeList
+     * @param  \App\Models\Favorite  $favorite
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $list = $this->user->recipeList()->find($id);
+        $list = $this->user->favorite()->find($id);
 
         if (!$list) {
             return response()->json([
@@ -90,12 +90,12 @@ class RecipeListController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\RecipeList  $recipeList
+     * @param  \App\Models\Favorite  $favorite
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RecipeList $recipeList, $id)
+    public function update(Request $request, Favorite $favorite, $id)
     {
-        $list = RecipeList::find($id);
+        $list = Favorite::find($id);
         $updateData = $list->fill($request->all())->save();
         $userId = $this->user->id;
 
@@ -105,7 +105,7 @@ class RecipeListController extends Controller
             ], 403);
         }
 
-        /* $updatedList = RecipeList::update($storeData)->save(); */
+        /* $updatedList = Favorite::update($storeData)->save(); */
 
         if ($updateData)
             return response()->json(
@@ -121,12 +121,12 @@ class RecipeListController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\RecipeList  $recipeList
+     * @param  \App\Models\Favorite  $favorite
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RecipeList $recipeList, $id)
+    public function destroy(Favorite $favorite, $id)
     {
-        $list = RecipeList::findOrFail($id);
+        $list = Favorite::findOrFail($id);
         $userId = $this->user->id;
 
         // rewrite as middleware
