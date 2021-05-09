@@ -30,3 +30,8 @@ to get all dependencies
 - Angular 11
 - Use external API
 - Possible to use on mobile phone
+
+## Laravel
+
+./vendor/bin/sail artisan cache:clear
+./vendor/bin/sail artisan route:clear
