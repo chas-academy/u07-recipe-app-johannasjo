@@ -27,9 +27,16 @@ use App\Http\Controllers\FavoriteRecipeController;
 
 Route::group([
     'middleware' => 'api',
-
+    'prefix' => 'auth'
 
 ], function ($router) {
+
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/refresh', [AuthController::class, 'refresh']);
+    Route::get('/user-profile', [AuthController::class, 'userProfile']);
+
     Route::get('/recipes', [RecipeController::class, 'index']);
     Route::get('/recipes/{id}', [RecipeController::class, 'show']);
 
@@ -44,9 +51,3 @@ Route::group([
     Route::put('/favorites/{id}', [FavoriteController::class, 'update']);
     Route::delete('/favorites/{id}', [FavoriteController::class, 'destroy']);
 });
-
-// Route::post('/login', [AuthController::class, 'login']);
-// Route::post('/register', [AuthController::class, 'register']);
-// Route::post('/logout', [AuthController::class, 'logout']);
-// Route::post('/refresh', [AuthController::class, 'refresh']);
-// Route::get('/user-profile', [AuthController::class, 'userProfile']);

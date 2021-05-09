@@ -12,9 +12,9 @@ class FavoriteController extends Controller
 
     public function __construct()
     {
-        /* $this->middleware('auth:api'); */
-        /* $this->user = auth()->user(); */
-        $this->user = User::find(1);
+        $this->middleware('auth:api');
+        $this->user = auth()->user();
+        /* $this->user = User::find(1); */
     }
 
     /**
@@ -39,7 +39,7 @@ class FavoriteController extends Controller
     public function store(Request $request)
     {
         $storeData = $this->validate($request, [
-            'list_title' => 'required',
+            'title' => 'required',
             'user_id' => 'required'
         ]);
 
@@ -53,7 +53,7 @@ class FavoriteController extends Controller
             ], 403);
         }
 
-        $list = Favorite::create($storeData)->save();
+        $list = Favorite::create($storeData);
 
         if ($list)
             return response()->json([
