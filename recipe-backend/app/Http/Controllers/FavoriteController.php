@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Favorite;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -11,8 +12,9 @@ class FavoriteController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api');
-        $this->user = auth()->user();
+        /* $this->middleware('auth:api'); */
+        /* $this->user = auth()->user(); */
+        $this->user = User::find(1);
     }
 
     /**
@@ -25,7 +27,7 @@ class FavoriteController extends Controller
 
         /*   Log::info('Getting the user id' . var_dump($this->user)); */
 
-        return $this->user->favorite()->get(['list_title']);
+        return $this->user->favorites()->get(['title']);
     }
 
     /**
@@ -73,7 +75,7 @@ class FavoriteController extends Controller
      */
     public function show($id)
     {
-        $list = $this->user->favorite()->find($id);
+        $list = $this->user->favorites()->find($id);
 
         if (!$list) {
             return response()->json([

@@ -14,9 +14,9 @@ class CreateFavoriteRecipeTable extends Migration
     public function up()
     {
         Schema::create('favorite_recipe', function (Blueprint $table) {
-            $table->primary('favorite_id', 'recipe_id');
-            $table->foreignId('favorite_id')->constrained();
-            $table->foreignId('recipe_id')->constrained();
+            $table->primary(['favorite_id', 'recipe_id']);
+            $table->foreignId('favorite_id')->constrained()->onDelete('cascade');
+            $table->foreignId('recipe_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

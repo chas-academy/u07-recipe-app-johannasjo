@@ -11,7 +11,7 @@ class Recipe extends Model
 
     protected $fillable = ['title'];
 
-    public function recipeList()
+    public function favorites()
     {
         return $this->belongsToMany(Favorite::class);
     }

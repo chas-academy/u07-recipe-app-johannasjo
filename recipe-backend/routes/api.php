@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\FavoriteRecipeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,31 +18,25 @@ use App\Http\Controllers\FavoriteController;
 |
 */
 
-Route::group([
+/* Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
 
 ], function ($router) {
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::get('/user-profile', [AuthController::class, 'userProfile']);
+}); */
 
+Route::group([
+    'middleware' => 'api',
+
+
+], function ($router) {
     Route::get('/recipes', [RecipeController::class, 'index']);
     Route::get('/recipes/{id}', [RecipeController::class, 'show']);
 
     // many to many relationship described through nestled route:
-    Route::delete('/favorites/{id}/recipes/{id}', [RecipeController::class, 'destroy']);
-    Route::post('/favorites/{id}/recipes', [RecipeController::class, 'store']);
-});
-
-
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth',
-
-], function ($router) {
+    Route::get('/favorites/{id}/recipes', [FavoriteRecipeController::class, 'index']);
+    Route::put('/favorites/{id}/recipes/{recipeId}', [FavoriteRecipeController::class, 'update']);
+    Route::delete('/favorites/{id}/recipes/{recipeId}', [FavoriteRecipeController::class, 'destroy']);
 
     Route::get('/favorites', [FavoriteController::class, 'index']);
     Route::get('/favorites/{id}', [FavoriteController::class, 'show']);
@@ -49,3 +44,9 @@ Route::group([
     Route::put('/favorites/{id}', [FavoriteController::class, 'update']);
     Route::delete('/favorites/{id}', [FavoriteController::class, 'destroy']);
 });
+
+// Route::post('/login', [AuthController::class, 'login']);
+// Route::post('/register', [AuthController::class, 'register']);
+// Route::post('/logout', [AuthController::class, 'logout']);
+// Route::post('/refresh', [AuthController::class, 'refresh']);
+// Route::get('/user-profile', [AuthController::class, 'userProfile']);
