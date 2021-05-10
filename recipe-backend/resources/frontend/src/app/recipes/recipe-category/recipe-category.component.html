@@ -1,0 +1,17 @@
+<mat-card class="category-card">
+  <mat-card-header>
+    <mat-card-title>Categories</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <!-- | async returns the latest value emitted -->
+    <!-- routerLink="." will route to this page -->
+    <a
+      *ngFor="let category of categories$ | async"
+      routerLink="."
+      [queryParams]="{ categoryName: category.strCategory }"
+      routerLinkActive="active"
+    >
+      {{ category.strCategory }}
+    </a>
+  </mat-card-content>
+</mat-card>
