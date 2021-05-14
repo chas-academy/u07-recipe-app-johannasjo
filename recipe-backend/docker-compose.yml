@@ -13,36 +13,32 @@ services:
     environment:
       WWWUSER: '${WWWUSER}'
       LARAVEL_SAIL: 1
-      DB_HOST: pgsql
     volumes:
       - '.:/var/www/html'
     depends_on:
       - pgsql
-     
-      adminer:
-        image: adminer
-        restart: always
-        ports:
-          - 8080:8080
-        depends_on:
-          - pgsql
-    
-      pgsql:
-        image: 'postgres:13'
-        ports:
-          - '${FORWARD_DB_PORT:-5432}:5432'
-        environment:
-          PGPASSWORD: '${DB_PASSWORD:-secret}'
-          POSTGRES_DB: '${DB_DATABASE}'
-          POSTGRES_USER: '${DB_USERNAME}'
-          POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
-        volumes:
-          - sailpgsql:/var/lib/postgresql/data
-        healthcheck:
-          test: ['CMD', 'pg_isready', '-q', '-d', '${DB_DATABASE}', '-U', '${DB_USERNAME}']
 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - pgsql
+  pgsql:
+    image: 'postgres:13'
+    ports:
+      - '${FORWARD_DB_PORT:-5432}:5432'
+    environment:
+      PGPASSWORD: '${DB_PASSWORD:-secret}'
+      POSTGRES_DB: '${DB_DATABASE}'
+      POSTGRES_USER: '${DB_USERNAME}'
+      POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
+    volumes:
+      - 'sailpgsql:/var/lib/postgresql/data'
 
-
-
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-q', '-d', '${DB_DATABASE}', '-U', '${DB_USERNAME}']
 volumes:
   sailpgsql:
+    driver: local
