@@ -30,3 +30,7 @@ to get all dependencies
 - Angular 11
 - Use external API
 - Possible to use on mobile phone
+
+## Heroku
+
+https://elements.heroku.com/buildpacks/nitinhayaran/heroku-buildpack-angular-spa
