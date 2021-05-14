@@ -13,62 +13,36 @@ services:
     environment:
       WWWUSER: '${WWWUSER}'
       LARAVEL_SAIL: 1
+      DB_HOST: pgsql
     volumes:
       - '.:/var/www/html'
-    networks:
-      - sail
     depends_on:
-      - mysql
-      - redis
-      - selenium
-  mysql:
-    image: 'mysql:8.0'
-    ports:
-      - '${FORWARD_DB_PORT:-3306}:3306'
-    environment:
-      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_DATABASE: '${DB_DATABASE}'
-      MYSQL_USER: '${DB_USERNAME}'
-      MYSQL_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-    volumes:
-      - 'sailmysql:/var/lib/mysql'
-    networks:
-      - sail
-    healthcheck:
-      test: ['CMD', 'mysqladmin', 'ping']
-  redis:
-    image: 'redis:alpine'
-    ports:
-      - '${FORWARD_REDIS_PORT:-6379}:6379'
-    volumes:
-      - 'sailredis:/data'
-    networks:
-      - sail
-    healthcheck:
-      test: ['CMD', 'redis-cli', 'ping']
-  meilisearch:
-    image: 'getmeili/meilisearch:latest'
-    ports:
-      - '${FORWARD_MEILISEARCH_PORT:-7700}:7700'
-    volumes:
-      - 'sailmeilisearch:/data.ms'
-    networks:
-      - sail
+      - pgsql
+     
+      adminer:
+        image: adminer
+        restart: always
+        ports:
+          - 8080:8080
+        depends_on:
+          - pgsql
+    
+      pgsql:
+        image: 'postgres:13'
+        ports:
+          - '${FORWARD_DB_PORT:-5432}:5432'
+        environment:
+          PGPASSWORD: '${DB_PASSWORD:-secret}'
+          POSTGRES_DB: '${DB_DATABASE}'
+          POSTGRES_USER: '${DB_USERNAME}'
+          POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
+        volumes:
+          - sailpgsql:/var/lib/postgresql/data
+        healthcheck:
+          test: ['CMD', 'pg_isready', '-q', '-d', '${DB_DATABASE}', '-U', '${DB_USERNAME}']
 
-  selenium:
-    image: 'selenium/standalone-chrome'
-    volumes:
-      - '/dev/shm:/dev/shm'
-    networks:
-      - sail
-networks:
-  sail:
-    driver: bridge
+
+
+
 volumes:
-  sailmysql:
-    driver: local
-  sailredis:
-    driver: local
-  sailmeilisearch:
-    driver: local
+  sailpgsql:
