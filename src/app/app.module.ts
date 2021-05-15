@@ -23,6 +23,8 @@ import { RecipeSearchComponent } from './recipes/recipe-search/recipe-search.com
 import { RecipeUserListComponent } from './recipes/recipe-favorite-list/recipe-favorite-list.component';
 import { RecipeViewComponent } from './recipes/recipe-view/recipe-view.component';
 import { RecipeSearchIngredientComponent } from './recipes/recipe-search-ingredient/recipe-search-ingredient.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,9 @@ import { RecipeSearchIngredientComponent } from './recipes/recipe-search-ingredi
     RecipeSearchComponent,
     RecipeUserListComponent,
     RecipeViewComponent,
-    RecipeSearchIngredientComponent
+    RecipeSearchIngredientComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

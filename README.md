@@ -31,6 +31,6 @@ to get all dependencies
 - Use external API
 - Possible to use on mobile phone
 
-## Heroku
+## Deploy to Netlify
 
-https://elements.heroku.com/buildpacks/nitinhayaran/heroku-buildpack-angular-spa
+1. Make sure the backend is set up first
