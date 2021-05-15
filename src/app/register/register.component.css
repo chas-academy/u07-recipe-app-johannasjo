@@ -1,0 +1,22 @@
+.register {
+  height: 65%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-card {
+  width: 550px;
+  border: 2px solid black;
+  text-align: center;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}

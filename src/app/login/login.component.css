@@ -6,8 +6,9 @@
 }
 
 mat-card {
-  width: 500px;
+  width: 550px;
   border: 2px solid black;
+  text-align: center;
 }
 
 mat-card-content {
