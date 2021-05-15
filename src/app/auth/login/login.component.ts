@@ -22,13 +22,14 @@ export class LoginComponent implements OnInit {
   } */
 
   ngOnInit(): void {
-    this.loginForm.statusChanges.subscribe(value => {
-      console.log(value);
-      console.log(this.loginForm.get('email'));
-    });
+    // this.loginForm.statusChanges.subscribe(value => {
+    //   console.log(value);
+    //   console.log(this.loginForm.get('email'));
+    // });
   }
 
-  logIn() {
+  onLogin() {
+    console.log('got here', this.loginForm);
     // check if credentials match jwt response
     // if not, route to register view
   }
