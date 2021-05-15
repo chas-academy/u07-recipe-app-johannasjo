@@ -9,7 +9,7 @@ export class RecipeListsComponent implements OnInit {
   constructor(private recipeListsService: RecipeListsService) {}
 
   ngOnInit(): void {}
-  getAll() {
-    this.recipeListsService.getAll();
-  }
+  // getAll() {
+  //   this.recipeListsService.getAll();
+  // }
 }

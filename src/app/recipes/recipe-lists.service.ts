@@ -11,10 +11,11 @@ export class RecipeListsService {
     this.baseUrl = 'https://git.heroku.com/josjo-recipe-backend.git';
   }
 
-  getAll() {
-    return this.http.get(`${this.baseUrl}/api/auth/favorites`).subscribe();
-    // map((response: Response) => {
-    //   return response.json();
-    // });
-  }
+  // getAll() {
+  //   return this.http.get(`${this.baseUrl}/api/auth/favorites`).pipe(
+  //     map((response: Response) => {
+  //       return response.json();
+  //     })
+  //   );
+  // }
 }

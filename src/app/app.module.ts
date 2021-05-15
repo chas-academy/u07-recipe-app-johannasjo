@@ -23,8 +23,8 @@ import { RecipeSearchComponent } from './recipes/recipe-search/recipe-search.com
 import { RecipeUserListComponent } from './recipes/recipe-favorite-list/recipe-favorite-list.component';
 import { RecipeViewComponent } from './recipes/recipe-view/recipe-view.component';
 import { RecipeSearchIngredientComponent } from './recipes/recipe-search-ingredient/recipe-search-ingredient.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 import { RecipeListsComponent } from './recipes/recipe-lists/recipe-lists.component';
 @NgModule({
   declarations: [

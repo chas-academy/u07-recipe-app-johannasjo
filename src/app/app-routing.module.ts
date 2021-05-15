@@ -4,8 +4,8 @@ import { RecipeLandingComponent } from './recipes/recipe-landing/recipe-landing.
 import { RecipeUserListComponent } from './recipes/recipe-favorite-list/recipe-favorite-list.component';
 import { RecipeViewComponent } from './recipes/recipe-view/recipe-view.component';
 import { RecipeListsComponent } from './recipes/recipe-lists/recipe-lists.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 const routes: Routes = [
   {
