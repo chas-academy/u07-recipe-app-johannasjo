@@ -1,9 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeListsService {
+  baseUrl: string;
+  constructor(private http: HttpClient) {
+    this.baseUrl = 'https://git.heroku.com/josjo-recipe-backend.git';
+  }
 
-  constructor() { }
+  getAll() {
+    return this.http.get(`${this.baseUrl}/api/auth/favorites`).subscribe();
+    // map((response: Response) => {
+    //   return response.json();
+    // });
+  }
 }

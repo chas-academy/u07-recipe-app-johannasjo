@@ -8,8 +8,6 @@ interface UserRecipe {
   title: string;
   image: string;
 }
-
-const baseUrl = 'https://josjo-recipe-backend.herokuapp.com';
 @Injectable({
   providedIn: 'root'
 })
@@ -41,9 +39,5 @@ export class RecipeFavoritesService {
   // check if recipe exists
   get(id: string) {
     return this.userRecipes$.getValue().find(userRecipe => userRecipe.id === id);
-  }
-
-  getAll(id: string) {
-    return;
   }
 }
