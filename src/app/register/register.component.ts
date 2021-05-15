@@ -32,6 +32,4 @@ export class RegisterComponent implements OnInit {
 }
 
 // check if email is already registered
-// check that password matches
 // login user if all is ok
-// otherwise return error message
