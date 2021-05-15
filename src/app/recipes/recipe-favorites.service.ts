@@ -8,8 +8,10 @@ interface UserRecipe {
   title: string;
   image: string;
 }
+
+const baseUrl = 'https://josjo-recipe-backend.herokuapp.com';
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class RecipeFavoritesService {
   public userRecipes$: BehaviorSubject<UserRecipe[]> = new BehaviorSubject([]);
@@ -17,16 +19,14 @@ export class RecipeFavoritesService {
 
   delete(id: string) {
     // send out new values from the observable
-    this.userRecipes$.next([
-      ...this.userRecipes$.getValue().filter((recipe) => recipe.id !== id),
-    ]);
+    this.userRecipes$.next([...this.userRecipes$.getValue().filter(recipe => recipe.id !== id)]);
   }
 
   add(id: string, title: string, image?: string) {
     if (this.get(id)) {
       this.snackBar
         .open('This recipe has already been added!', 'Show', {
-          duration: 5000,
+          duration: 5000
         })
         .onAction()
         // routes the observable object to fav-list
@@ -34,17 +34,16 @@ export class RecipeFavoritesService {
           this.router.navigateByUrl('favorites');
         });
     } else {
-      this.userRecipes$.next([
-        ...this.userRecipes$.getValue(),
-        { id, title, image },
-      ]);
+      this.userRecipes$.next([...this.userRecipes$.getValue(), { id, title, image }]);
     }
   }
 
   // check if recipe exists
   get(id: string) {
-    return this.userRecipes$
-      .getValue()
-      .find((userRecipe) => userRecipe.id === id);
+    return this.userRecipes$.getValue().find(userRecipe => userRecipe.id === id);
+  }
+
+  getAll(id: string) {
+    return;
   }
 }

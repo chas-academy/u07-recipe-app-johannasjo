@@ -25,6 +25,7 @@ import { RecipeViewComponent } from './recipes/recipe-view/recipe-view.component
 import { RecipeSearchIngredientComponent } from './recipes/recipe-search-ingredient/recipe-search-ingredient.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { RecipeListsComponent } from './recipes/recipe-lists/recipe-lists.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { RegisterComponent } from './register/register.component';
     RecipeViewComponent,
     RecipeSearchIngredientComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    RecipeListsComponent
   ],
   imports: [
     BrowserModule,
