@@ -3,10 +3,13 @@
     <mat-icon>menu</mat-icon>
   </button>
   <nav>
-    <a routerLink="recipes">Recipes</a>
-    <a routerLink="favorites">Favorites</a>
-    <a routerLink="login">Login</a>
-    <a routerLink="register">Register</a>
-    <a routerLink="user">User</a>
+    <ul>
+      <li *ngIf="!userIsAuthenticated"><a routerLink="recipes">Recipes</a></li>
+      <li *ngIf="userIsAuthenticated"><a routerLink="favorites">Favorites</a></li>
+      <li *ngIf="!userIsAuthenticated"><a routerLink="login">Login</a></li>
+      <li *ngIf="!userIsAuthenticated"><a routerLink="register">Register</a></li>
+      <li *ngIf="!userIsAuthenticated"><a routerLink="user">User</a></li>
+      <li *ngIf="userIsAuthenticated"><button mat-button (click)="onLogout()">Logout</button></li>
+    </ul>
   </nav>
 </mat-toolbar>

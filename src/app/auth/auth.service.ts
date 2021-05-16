@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 import { AuthData } from './auth-data.model';
 
@@ -11,12 +12,23 @@ interface LoginApiReply {
 }
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  private isAuthenticated = false;
   private token: string;
+  private authStatusListener = new Subject<boolean>();
   baseUrl = 'https://git.heroku.com/josjo-recipe-backend.git';
+
   constructor(private http: HttpClient) {}
 
   getToken() {
     return this.token;
+  }
+
+  getIsAuth() {
+    return this.isAuthenticated;
+  }
+
+  getAuthStatusListener() {
+    return this.authStatusListener.asObservable();
   }
 
   register(name: string, email: string, password: string) {
@@ -34,6 +46,16 @@ export class AuthService {
       .subscribe(response => {
         const token = response.access_token;
         this.token = token;
+        if (token) {
+          this.isAuthenticated = true;
+          this.authStatusListener.next(true);
+        }
       });
+  }
+
+  logout() {
+    this.token = null;
+    this.isAuthenticated = false;
+    this.authStatusListener.next(false);
   }
 }

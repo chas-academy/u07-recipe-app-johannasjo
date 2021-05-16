@@ -1,4 +1,4 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
 
 import { Meal } from '../meal.model';
 import { RecipesService } from '../recipes.service';
@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { RecipeFavoritesService } from '../recipe-favorites.service';
 import { randomIntFromInterval } from 'src/app/utils';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Subscription } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,13 +16,16 @@ import { randomIntFromInterval } from 'src/app/utils';
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css']
 })
-export class RecipeListComponent implements OnInit {
+export class RecipeListComponent implements OnInit, OnDestroy {
+  private authStatusSubscription: Subscription;
+  public userIsAuthenticated = false;
   meals: Meal[] = [];
 
   constructor(
     private recipesService: RecipesService,
     private route: ActivatedRoute,
-    private recipeFavoritesService: RecipeFavoritesService
+    private recipeFavoritesService: RecipeFavoritesService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +52,13 @@ export class RecipeListComponent implements OnInit {
     });
 
     this.recipesService.getFiveRandom().subscribe(meals => (this.meals = meals));
+
+    this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authStatusSubscription = this.authService
+      .getAuthStatusListener()
+      .subscribe(isAuthenticated => {
+        this.userIsAuthenticated = isAuthenticated;
+      });
   }
 
   addRecipe(id: string, title: string, image?: string) {
@@ -55,5 +67,9 @@ export class RecipeListComponent implements OnInit {
 
   fiveRandomRecipes() {
     return this.recipesService.getOne(randomIntFromInterval(1, 1000).toString());
+  }
+
+  ngOnDestroy(): void {
+    this.authStatusSubscription.unsubscribe();
   }
 }

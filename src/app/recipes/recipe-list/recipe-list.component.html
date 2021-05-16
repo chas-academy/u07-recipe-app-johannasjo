@@ -4,18 +4,13 @@
   <mat-card *ngFor="let meal of meals" class="recipe-card">
     <mat-card-header>
       <mat-card-title
-        ><a routerLink="{{ meal.idMeal }}">{{
-          meal.strMeal
-        }}</a></mat-card-title
+        ><a routerLink="{{ meal.idMeal }}">{{ meal.strMeal }}</a></mat-card-title
       >
     </mat-card-header>
     <img mat-card-image src="{{ meal.strMealThumb }}" alt="" />
     <mat-card-content> </mat-card-content>
-    <mat-card-actions>
-      <button
-        mat-button
-        (click)="addRecipe(meal.idMeal, meal.strMeal, meal.strMealThumb)"
-      >
+    <mat-card-actions *ngIf="userIsAuthenticated">
+      <button mat-button (click)="addRecipe(meal.idMeal, meal.strMeal, meal.strMealThumb)">
         ADD
       </button>
     </mat-card-actions>
