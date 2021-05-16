@@ -28,6 +28,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     const authData: AuthData = { email: email, password: password };
+    console.log(authData);
     this.http
       .post<LoginApiReply>(`http://localhost/api/auth/login`, authData)
       .subscribe(response => {
@@ -35,12 +36,4 @@ export class AuthService {
         this.token = token;
       });
   }
-
-  // getAll() {
-  //   return this.http.get(`${this.baseUrl}/api/auth/favorites`).pipe(
-  //     map((response: Response) => {
-  //       return response.json();
-  //     })
-  //   );
-  // }
 }

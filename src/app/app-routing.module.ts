@@ -6,6 +6,7 @@ import { RecipeViewComponent } from './recipes/recipe-view/recipe-view.component
 import { RecipeFavoriteListsComponent } from './recipes/recipe-favorite-lists/recipe-favorite-lists.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -29,8 +30,8 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'favorites/all',
-    component: RecipeFavoriteListsComponent
+    path: 'user',
+    component: UserProfileComponent
   },
   // default to recipes
   {

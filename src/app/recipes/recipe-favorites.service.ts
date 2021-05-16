@@ -3,6 +3,8 @@ import { BehaviorSubject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
+import { HttpClient } from '@angular/common/http';
+
 interface UserRecipe {
   id: string;
   title: string;
@@ -12,8 +14,9 @@ interface UserRecipe {
   providedIn: 'root'
 })
 export class RecipeFavoritesService {
+  baseUrl = 'http://localhost';
   public userRecipes$: BehaviorSubject<UserRecipe[]> = new BehaviorSubject([]);
-  constructor(private snackBar: MatSnackBar, private router: Router) {}
+  constructor(private snackBar: MatSnackBar, private router: Router, private http: HttpClient) {}
 
   delete(id: string) {
     // send out new values from the observable
@@ -39,5 +42,9 @@ export class RecipeFavoritesService {
   // check if recipe exists
   get(id: string) {
     return this.userRecipes$.getValue().find(userRecipe => userRecipe.id === id);
+  }
+
+  getAll() {
+    return this.http.get(`${this.baseUrl}/api/auth/favorites`);
   }
 }
