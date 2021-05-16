@@ -7,6 +7,7 @@ import { RecipeFavoriteListsComponent } from './recipes/recipe-favorite-lists/re
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'favorites',
-    component: RecipeUserListComponent
+    component: RecipeUserListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -44,6 +46,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule {}
