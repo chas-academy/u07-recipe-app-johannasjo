@@ -5,15 +5,13 @@
   <button mat-button (click)="deleteRecipe(userRecipe.id)">Delete</button>
 </ul> -->
 
-<app-recipe-lists></app-recipe-lists>
+<app-recipe-favorite-lists></app-recipe-favorite-lists>
 
 <div class="card-holder">
   <mat-card *ngFor="let userRecipe of userRecipes$ | async">
     <mat-card-header>
       <mat-card-title>
-        <a routerLink="../recipes/{{ userRecipe.id }}">{{
-          userRecipe.title
-        }}</a></mat-card-title
+        <a routerLink="../recipes/{{ userRecipe.id }}">{{ userRecipe.title }}</a></mat-card-title
       >
     </mat-card-header>
     <img mat-card-image src="{{ userRecipe.image }}" alt="" />

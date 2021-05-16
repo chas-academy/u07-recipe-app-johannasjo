@@ -25,7 +25,8 @@ import { RecipeViewComponent } from './recipes/recipe-view/recipe-view.component
 import { RecipeSearchIngredientComponent } from './recipes/recipe-search-ingredient/recipe-search-ingredient.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { RecipeListsComponent } from './recipes/recipe-lists/recipe-lists.component';
+import { UserProfileComponent } from './auth/user-profile/user-profile.component';
+import { RecipeFavoriteListsComponent } from './recipes/recipe-favorite-lists/recipe-favorite-lists.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { RecipeListsComponent } from './recipes/recipe-lists/recipe-lists.compon
     RecipeSearchIngredientComponent,
     LoginComponent,
     RegisterComponent,
-    RecipeListsComponent
+    UserProfileComponent,
+    RecipeFavoriteListsComponent
   ],
   imports: [
     BrowserModule,
