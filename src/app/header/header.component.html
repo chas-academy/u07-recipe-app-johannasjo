@@ -4,7 +4,7 @@
   </button>
   <nav>
     <ul>
-      <li *ngIf="!userIsAuthenticated"><a routerLink="recipes">Recipes</a></li>
+      <li><a routerLink="recipes">Recipes</a></li>
       <li *ngIf="userIsAuthenticated"><a routerLink="favorites">Favorites</a></li>
       <li *ngIf="!userIsAuthenticated"><a routerLink="login">Login</a></li>
       <li *ngIf="!userIsAuthenticated"><a routerLink="register">Register</a></li>
