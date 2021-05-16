@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.authService.createUser(
+    this.authService.register(
       this.registerForm.get('name').value,
       this.registerForm.get('email').value,
       this.registerForm.get('password').value
