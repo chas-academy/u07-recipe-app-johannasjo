@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RecipeLandingComponent } from './recipes/recipe-landing/recipe-landing.component';
-import { RecipeUserListComponent } from './recipes/recipe-favorite-list/recipe-favorite-list.component';
+import { RecipeFavoriteListComponent } from './recipes/recipe-favorite-list/recipe-favorite-list.component';
 import { RecipeViewComponent } from './recipes/recipe-view/recipe-view.component';
-import { RecipeFavoriteListsComponent } from './recipes/recipe-favorite-lists/recipe-favorite-lists.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
@@ -20,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'favorites',
-    component: RecipeUserListComponent,
+    component: RecipeFavoriteListComponent,
     canActivate: [AuthGuard]
   },
   {

@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { AppComponent } from './app.component';
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
@@ -20,13 +21,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecipeCategoryComponent } from './recipes/recipe-category/recipe-category.component';
 import { InfoBoxComponent } from './info-box/info-box.component';
 import { RecipeSearchComponent } from './recipes/recipe-search/recipe-search.component';
-import { RecipeUserListComponent } from './recipes/recipe-favorite-list/recipe-favorite-list.component';
+import { RecipeFavoriteListComponent } from './recipes/recipe-favorite-list/recipe-favorite-list.component';
 import { RecipeViewComponent } from './recipes/recipe-view/recipe-view.component';
 import { RecipeSearchIngredientComponent } from './recipes/recipe-search-ingredient/recipe-search-ingredient.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
-import { RecipeFavoriteListsComponent } from './recipes/recipe-favorite-lists/recipe-favorite-lists.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 @NgModule({
   declarations: [
@@ -37,13 +37,12 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     RecipeCategoryComponent,
     InfoBoxComponent,
     RecipeSearchComponent,
-    RecipeUserListComponent,
+    RecipeFavoriteListComponent,
     RecipeViewComponent,
     RecipeSearchIngredientComponent,
     LoginComponent,
     RegisterComponent,
-    UserProfileComponent,
-    RecipeFavoriteListsComponent
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +58,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     MatIconModule,
     FormsModule,
     MatSnackBarModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatExpansionModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

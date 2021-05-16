@@ -3,9 +3,9 @@ import { RecipeFavoritesService } from '../recipe-favorites.service';
 @Component({
   selector: 'app-recipe-favorite-list',
   templateUrl: './recipe-favorite-list.component.html',
-  styleUrls: ['./recipe-favorite-list.component.css'],
+  styleUrls: ['./recipe-favorite-list.component.css']
 })
-export class RecipeUserListComponent implements OnInit {
+export class RecipeFavoriteListComponent implements OnInit {
   constructor(private recipeFavoritesService: RecipeFavoritesService) {}
   userRecipes$ = this.recipeFavoritesService.userRecipes$;
   ngOnInit(): void {}
