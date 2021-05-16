@@ -15,6 +15,7 @@ interface LoginApiReply {
 export class AuthService {
   private isAuthenticated = false;
   private token: string;
+  private tokenTimer: any;
   private authStatusListener = new Subject<boolean>();
   baseUrl = 'https://git.heroku.com/josjo-recipe-backend.git';
 
@@ -48,11 +49,19 @@ export class AuthService {
         const token = response.access_token;
         this.token = token;
         if (token) {
+          const tokenExpiresIn = response.expires_in;
+          // log out user when token expires
+          this.tokenTimer = setTimeout(
+            () => {
+              this.logout();
+            },
+            // convert to millisec as setTimeout only reads that
+            tokenExpiresIn * 1000
+          );
           this.isAuthenticated = true;
           this.authStatusListener.next(true);
           this.router.navigate(['/']);
-        } // if no account exists, reroute to register
-        // if email is taken, display that error to user
+        }
       });
   }
 
@@ -61,5 +70,6 @@ export class AuthService {
     this.isAuthenticated = false;
     this.authStatusListener.next(false);
     this.router.navigate(['/']);
+    clearTimeout(this.tokenTimer);
   }
 }
