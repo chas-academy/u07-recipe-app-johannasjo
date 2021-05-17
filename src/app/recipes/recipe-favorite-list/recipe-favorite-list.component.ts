@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { RecipeFavoritesService } from '../recipe-favorites.service';
 @Component({
   selector: 'app-recipe-favorite-list',
@@ -7,8 +8,15 @@ import { RecipeFavoritesService } from '../recipe-favorites.service';
 })
 export class RecipeFavoriteListComponent implements OnInit {
   constructor(private recipeFavoritesService: RecipeFavoritesService) {}
+
+  listName = new FormControl('', [Validators.required]);
+
   userRecipes$ = this.recipeFavoritesService.userRecipes$;
   ngOnInit(): void {}
+
+  onCreateList(listName) {
+    console.log(listName);
+  }
 
   deleteRecipe(id: string) {
     this.recipeFavoritesService.delete(id);

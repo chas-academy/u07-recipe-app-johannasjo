@@ -7,8 +7,7 @@
 <mat-accordion>
   <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>
-      <mat-panel-title> This is the expansion title </mat-panel-title>
-      <mat-panel-description> This is a summary of the content </mat-panel-description>
+      <mat-panel-title> List title </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="card-holder">
       <mat-card *ngFor="let userRecipe of userRecipes$ | async">
@@ -28,3 +27,13 @@
     </div>
   </mat-expansion-panel>
 </mat-accordion>
+
+<form class="new-list">
+  <mat-form-field class="full-width" id="listName">
+    <mat-label>List name</mat-label>
+    <input matInput placeholder="Breakfast ideas" [formControl]="listName" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" (click)="onCreateList(listName.value)">
+    Create new list
+  </button>
+</form>
