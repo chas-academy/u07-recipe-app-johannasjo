@@ -4,27 +4,17 @@
   <li>{{ userRecipe.strMealThumb }} {{ userRecipe.title }}</li>
   <button mat-button (click)="deleteRecipe(userRecipe.id)">Delete</button>
 </ul> -->
-<mat-accordion>
+<mat-accordion *ngFor="let favorite of favorites">
   <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>
-      <mat-panel-title> List title </mat-panel-title>
+      <mat-panel-title> {{ favorite.title }} </mat-panel-title>
+      <button mat-raised-button color="warn" (click)="onDeleteFavorite(favorite.id)">DELETE</button>
     </mat-expansion-panel-header>
-    <div class="card-holder">
-      <mat-card *ngFor="let userRecipe of userRecipes$ | async">
-        <mat-card-header>
-          <mat-card-title>
-            <a routerLink="../recipes/{{ userRecipe.id }}">{{
-              userRecipe.title
-            }}</a></mat-card-title
-          >
-        </mat-card-header>
-        <img mat-card-image src="{{ userRecipe.image }}" alt="" />
-        <mat-card-content> </mat-card-content>
-        <mat-card-actions>
-          <button mat-button (click)="deleteRecipe(userRecipe.id)">DELETE</button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
+    <ng-template matExpansionPanelContent>
+      <app-recipe-favorite-list-card
+        [recipeFavoriteListId]="favorite.id"
+      ></app-recipe-favorite-list-card>
+    </ng-template>
   </mat-expansion-panel>
 </mat-accordion>
 
@@ -33,7 +23,12 @@
     <mat-label>List name</mat-label>
     <input matInput placeholder="Breakfast ideas" [formControl]="listName" />
   </mat-form-field>
-  <button mat-raised-button color="primary" type="submit" (click)="onCreateList(listName.value)">
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    (click)="onCreateFavorite(listName.value)"
+  >
     Create new list
   </button>
 </form>

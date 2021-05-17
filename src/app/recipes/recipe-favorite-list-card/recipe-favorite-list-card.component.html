@@ -1,0 +1,18 @@
+<div class="card-holder">
+  <mat-card *ngFor="let recipeFavoriteListRecipe of recipeFavoriteListRecipes">
+    <mat-card-header>
+      <mat-card-title>
+        <a routerLink="../recipes/{{ recipeFavoriteListRecipe.idMeal }}">{{
+          recipeFavoriteListRecipe.strMeal
+        }}</a></mat-card-title
+      >
+    </mat-card-header>
+    <img mat-card-image src="{{ recipeFavoriteListRecipe.strMealThumb }}" alt="" />
+    <mat-card-content> </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="detach(recipeFavoriteListId, recipeFavoriteListRecipe.id)">
+        DELETE
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
