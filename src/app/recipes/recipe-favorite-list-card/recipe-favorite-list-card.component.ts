@@ -38,12 +38,12 @@ export class RecipeFavoriteListCardComponent implements OnInit, OnChanges {
       this.recipeListsService
         .getAllRecipes(recipeFavoriteListId)
         .pipe(
-          concatMap(recipeFavoriteLists => {
+          concatMap(recipes => {
             return forkJoin(
-              recipeFavoriteLists.map(recipeFavoriteList =>
+              recipes.map(internalRecipe =>
                 this.recipesService
-                  .getOne(recipeFavoriteList.external_id)
-                  .pipe(map(recipe => ({ ...recipe, id: recipeFavoriteListId })))
+                  .getOne(internalRecipe.external_id)
+                  .pipe(map(externalRecipe => ({ ...externalRecipe, id: internalRecipe.id })))
               )
             );
           })

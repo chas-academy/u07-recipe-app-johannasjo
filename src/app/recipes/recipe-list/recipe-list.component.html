@@ -10,7 +10,21 @@
     <img mat-card-image src="{{ meal.strMealThumb }}" alt="" />
     <mat-card-content> </mat-card-content>
     <mat-card-actions *ngIf="userIsAuthenticated">
-      <button mat-button (click)="addRecipe(meal.idMeal, meal.strMeal, meal.strMealThumb)">
+      <mat-form-field appearance="fill">
+        <mat-label>Choose list</mat-label>
+        <mat-select #favoriteSelect>
+          <mat-option>---</mat-option>
+          <mat-option *ngFor="let favorite of favorites" [value]="favorite.id">
+            {{ favorite.title }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button
+        mat-button
+        [disabled]="!favoriteSelect.value"
+        (click)="addRecipe(favoriteSelect.value, meal.strMeal, meal.idMeal)"
+      >
         ADD
       </button>
     </mat-card-actions>

@@ -106,12 +106,10 @@ export class RecipesService {
 
   getOne(id: string) {
     let httpParams = new HttpParams().set('i', id);
-    return this.http
-      .get<ApiReply>(`${this.baseUrl}/lookup.php`, { params: httpParams })
-      .pipe(
-        map(apiReply => apiReply.meals[0]),
-        map(apiMeal => this.formatMealIngredientsMeasures(apiMeal))
-      );
+    return this.http.get<ApiReply>(`${this.baseUrl}/lookup.php`, { params: httpParams }).pipe(
+      map(apiReply => apiReply.meals[0]),
+      map(apiMeal => this.formatMealIngredientsMeasures(apiMeal))
+    );
   }
   formatMealIngredientsMeasures(apiMeal: ApiMeal): Meal {
     const ingredientsMeasures = [];
@@ -142,5 +140,12 @@ export class RecipesService {
       this.getOneRandom(),
       this.getOneRandom()
     ]);
+  }
+
+  create(title: string, externalId: string) {
+    return this.http.post<{ id: string; title: string; externalId: string }>(
+      `http://localhost/api/auth/recipes`,
+      { title, external_id: externalId }
+    );
   }
 }

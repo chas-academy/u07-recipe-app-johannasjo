@@ -7,7 +7,11 @@ import { filter } from 'rxjs/operators';
 import { RecipeFavoritesService } from '../recipe-favorites.service';
 import { randomIntFromInterval } from 'src/app/utils';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Subscription } from 'rxjs';
+import { Subscription, VirtualTimeScheduler } from 'rxjs';
+import { RecipeListsService } from '../recipe-lists.service';
+import { Favorite } from '../favorite.model';
+import { FormGroup } from '@angular/forms';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,10 +23,13 @@ import { Subscription } from 'rxjs';
 export class RecipeListComponent implements OnInit, OnDestroy {
   private authStatusSubscription: Subscription;
   public userIsAuthenticated = false;
+
   meals: Meal[] = [];
+  favorites: Favorite[] = [];
 
   constructor(
     private recipesService: RecipesService,
+    private recipeListsService: RecipeListsService,
     private route: ActivatedRoute,
     private recipeFavoritesService: RecipeFavoritesService,
     private authService: AuthService
@@ -59,10 +66,16 @@ export class RecipeListComponent implements OnInit, OnDestroy {
       .subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
       });
+    this.recipeListsService.getAll().subscribe(favorites => {
+      this.favorites = favorites;
+    });
   }
 
-  addRecipe(id: string, title: string, image?: string) {
-    this.recipeFavoritesService.add(id, title, image);
+  addRecipe(id: string, title: string, externalId: string) {
+    console.log({ component: 'RecipeListComponent', id, title, externalId });
+    this.recipesService.create(title, externalId).subscribe(recipe => {
+      this.recipeListsService.attach(id, recipe.id).subscribe();
+    });
   }
 
   fiveRandomRecipes() {

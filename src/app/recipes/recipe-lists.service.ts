@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
+import { Favorite } from './favorite.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +13,7 @@ export class RecipeListsService {
   }
 
   getAll() {
-    return this.http.get<{ id: string; title: string }[]>(`${this.baseUrl}/api/auth/favorites`);
+    return this.http.get<Favorite[]>(`${this.baseUrl}/api/auth/favorites`);
   }
 
   getAllRecipes(id: string) {
@@ -35,6 +36,6 @@ export class RecipeListsService {
   }
 
   create(title: string) {
-    return this.http.post(`${this.baseUrl}/api/auth/favorites`, { title });
+    return this.http.post<Favorite>(`${this.baseUrl}/api/auth/favorites`, { title });
   }
 }
