@@ -1,9 +1,19 @@
-
 .card-holder {
   display: flex;
   justify-content: center;
   gap: 1em;
   margin: 1em;
+}
+
+.new-list {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+}
+
+button {
+  height: 46px;
+  margin-left: 1em;
 }
 
 h1 {
@@ -14,7 +24,6 @@ mat-card {
   max-width: 25%;
   text-align: center;
 }
-
 
 mat-card-header {
   display: flex;
@@ -31,10 +40,8 @@ a {
   margin-bottom: 20px;
 }
 
-
 @media (max-width: 600px) {
   .recipe-card {
     min-width: 60%;
   }
 }
-

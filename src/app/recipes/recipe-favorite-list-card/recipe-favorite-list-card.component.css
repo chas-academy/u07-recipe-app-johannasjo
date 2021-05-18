@@ -1,0 +1,41 @@
+mat-card-header {
+  display: flex;
+  justify-content: center;
+}
+
+mat-card-title {
+  height: 3em;
+}
+
+.card-holder {
+  display: flex;
+  flex-flow: wrap;
+  height: 100%;
+  width: 100%;
+  gap: 1em;
+}
+
+mat-card {
+  width: 20%;
+  height: 20%;
+  border: 2px solid black;
+}
+
+a {
+  font-size: 20px;
+  color: #000;
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: flex;
+  align-self: flex-start;
+}
+
+@media (max-width: 600px) {
+  .recipe-card {
+    min-width: 60%;
+  }
+
+  mat-form-field {
+    min-width: 65%;
+  }
+}
