@@ -7,6 +7,11 @@ mat-card-title {
   height: 3em;
 }
 
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .card-holder {
   display: flex;
   flex-flow: wrap;
@@ -18,16 +23,15 @@ mat-card-title {
 mat-card {
   width: 20%;
   height: 20%;
-  border: 2px solid black;
 }
 
 a {
-  font-size: 20px;
+  /*   width: 150px; */
+  font-size: 15px;
   color: #000;
   text-decoration: none;
   margin-bottom: 10px;
-  display: flex;
-  align-self: flex-start;
+  overflow: hidden;
 }
 
 @media (max-width: 600px) {

@@ -39,10 +39,7 @@ export class RegisterComponent implements OnInit {
       this.registerForm.get('email').value,
       this.registerForm.get('password').value
     );
-    // check if credentials match jwt response
-    // if not, route to register view
   }
 }
 
-// check if email is already registered
 // login user if all is ok

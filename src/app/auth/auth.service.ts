@@ -15,6 +15,7 @@ interface LoginApiReply {
 export class AuthService {
   private isAuthenticated = false;
   private token: string;
+  private errorMessage: any;
   private tokenTimer: any;
   private authStatusListener = new Subject<boolean>();
   baseUrl = 'https://git.heroku.com/josjo-recipe-backend.git';
@@ -34,15 +35,27 @@ export class AuthService {
   }
 
   register(name: string, email: string, password: string) {
+    this.errorMessage = '';
     const authData: AuthData = { name: name, email: email, password: password };
-    this.http.post(`http://localhost/api/auth/register`, authData).subscribe(response => {
-      console.log(response);
-    });
+    this.http.post(`http://localhost/api/auth/register`, authData).subscribe(
+      response => {
+        console.log(response);
+
+        // const token = response;
+        // this.token = token;
+        // if (token) {
+        //   this.router.navigate['/login'];
+        // }
+      },
+      error => {
+        console.error('error caught in component');
+        this.errorMessage = error;
+      }
+    );
   }
 
   login(email: string, password: string) {
     const authData: AuthData = { email: email, password: password };
-    console.log(authData);
     this.http
       .post<LoginApiReply>(`http://localhost/api/auth/login`, authData)
       .subscribe(response => {

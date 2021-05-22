@@ -28,7 +28,6 @@ import { RecipeViewComponent } from './recipes/recipe-view/recipe-view.component
 import { RecipeSearchIngredientComponent } from './recipes/recipe-search-ingredient/recipe-search-ingredient.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { RecipeFavoriteListCardComponent } from './recipes/recipe-favorite-list-card/recipe-favorite-list-card.component';
 @NgModule({
@@ -45,7 +44,6 @@ import { RecipeFavoriteListCardComponent } from './recipes/recipe-favorite-list-
     RecipeSearchIngredientComponent,
     LoginComponent,
     RegisterComponent,
-    UserProfileComponent,
     RecipeFavoriteListCardComponent
   ],
   imports: [

@@ -5,7 +5,6 @@ import { RecipeFavoriteListComponent } from './recipes/recipe-favorite-list/reci
 import { RecipeViewComponent } from './recipes/recipe-view/recipe-view.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
@@ -29,10 +28,6 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
-  },
-  {
-    path: 'user',
-    component: UserProfileComponent
   },
   // default to recipes
   {
