@@ -14,17 +14,7 @@ export class RegisterComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     name: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
-    // confirmPassword: new FormControl('', [Validators.required, this.confirmEquals()])
   });
-
-  // confirmEquals(): ValidatorFn {
-  //   return (control: AbstractControl): { [key: string]: any } | null =>
-  //     control.value?.toLowerCase() === this.passwordValue.toLowerCase() ? null : { noMatch: true };
-  // }
-
-  // get passwordValue() {
-  //   return this.registerForm.get('password').value;
-  // }
 
   ngOnInit(): void {
     console.log(this.registerForm.get('password').value);

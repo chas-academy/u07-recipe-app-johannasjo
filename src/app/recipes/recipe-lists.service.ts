@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { catchError, filter, map, tap } from 'rxjs/operators';
 import { Favorite } from './favorite.model';
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeListsService {
   baseUrl: string;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) {
     this.baseUrl = 'http://localhost';
   }
 
@@ -24,15 +25,33 @@ export class RecipeListsService {
 
   detach(id: string, recipeId: string) {
     console.log({ component: 'RecipeListsService', id, recipeId });
-    return this.http.delete(`${this.baseUrl}/api/auth/favorites/${id}/recipes/${recipeId}`);
+    return this.http.delete(`${this.baseUrl}/api/auth/favorites/${id}/recipes/${recipeId}`).pipe(
+      tap(response => {
+        this.snackBar.open('Recipe was removed from your list!', undefined, {
+          duration: 5000
+        });
+      })
+    );
   }
 
   attach(id: string, recipeId: string) {
-    return this.http.put(`${this.baseUrl}/api/auth/favorites/${id}/recipes/${recipeId}`, {});
+    return this.http.put(`${this.baseUrl}/api/auth/favorites/${id}/recipes/${recipeId}`, {}).pipe(
+      tap(response => {
+        this.snackBar.open('Recipe was added to your list!', undefined, {
+          duration: 5000
+        });
+      })
+    );
   }
 
   delete(favoriteId: number) {
-    return this.http.delete(`${this.baseUrl}/api/auth/favorites/${favoriteId}`);
+    return this.http.delete(`${this.baseUrl}/api/auth/favorites/${favoriteId}`).pipe(
+      tap(response => {
+        this.snackBar.open('Your list was removed', undefined, {
+          duration: 5000
+        });
+      })
+    );
   }
 
   create(title: string) {

@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { EMPTY, Subject, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { AuthData } from './auth-data.model';
 
@@ -19,7 +21,7 @@ export class AuthService {
   private authStatusListener = new Subject<boolean>();
   baseUrl = 'https://git.heroku.com/josjo-recipe-backend.git';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) {}
 
   getToken() {
     return this.token;
@@ -35,13 +37,32 @@ export class AuthService {
 
   register(name: string, email: string, password: string) {
     const authData: AuthData = { name: name, email: email, password: password };
-    return this.http.post(`http://localhost/api/auth/register`, authData);
+    return this.http.post(`http://localhost/api/auth/register`, authData).pipe(
+      catchError(err => {
+        if (err.status === 400) {
+          this.snackBar.open('This email is already connected to user!', undefined, {
+            duration: 5000
+          });
+        }
+        return EMPTY;
+      })
+    );
   }
 
   login(email: string, password: string) {
     const authData: AuthData = { email: email, password: password };
     this.http
       .post<LoginApiReply>(`http://localhost/api/auth/login`, authData)
+      .pipe(
+        catchError(err => {
+          if (err.status === 401) {
+            this.snackBar.open('Please check your credentials and try again', undefined, {
+              duration: 5000
+            });
+          }
+          return EMPTY;
+        })
+      )
       .subscribe(response => {
         const token = response.access_token;
         this.token = token;
@@ -57,6 +78,7 @@ export class AuthService {
           this.router.navigate(['/']);
         }
       });
+    // add error message in snackbar if login not possible
   }
 
   autoAuthUser() {

@@ -27,17 +27,6 @@
           <input matInput type="password" formControlName="password" required />
           <mat-error *ngIf="registerForm.get('password').invalid">You must enter a value</mat-error>
         </mat-form-field>
-        <!-- <mat-form-field appearance="outline">
-          <mat-label>Password confirmation</mat-label>
-          <input matInput formControlName="confirmPassword" required />
-          <mat-error
-            *ngIf="
-              registerForm.get('confirmPassword').dirty &&
-              registerForm.get('confirmPassword').errors?.noMatch
-            "
-            >Password and Confirm password must be the same</mat-error
-          >
-        </mat-form-field> -->
       </form>
       <p>Already registered? <a routerLink="/login">Log in!</a></p>
     </mat-card-content>
