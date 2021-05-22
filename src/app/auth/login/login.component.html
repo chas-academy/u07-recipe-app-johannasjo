@@ -21,9 +21,11 @@
           <mat-error *ngIf="loginForm.get('password').invalid">You must enter a value</mat-error>
         </mat-form-field>
       </form>
+
+      <p>If you don't have an account you can always <a routerLink="/register">register</a></p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button type="submit" form="login-form">Log in</button>
+      <button mat-button type="submit" form="login-form">log in</button>
     </mat-card-actions>
   </mat-card>
 </div>
