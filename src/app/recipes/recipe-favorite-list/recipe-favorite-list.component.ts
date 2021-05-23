@@ -18,7 +18,10 @@ export class RecipeFavoriteListComponent implements OnInit {
   listName = new FormControl('', [Validators.required]);
 
   ngOnInit(): void {
-    this.recipeListsService.getAll().subscribe(favorites => (this.favorites = favorites));
+    this.recipeListsService
+      .getAll()
+      .pipe(tap(console.log))
+      .subscribe(favorites => (this.favorites = favorites));
   }
 
   onCreateFavorite(title: string) {

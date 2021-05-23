@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { filter, map } from 'rxjs/operators';
 
 import { Meal } from './meal.model';
-import { Category } from './mealCategory.model';
 import { HttpParams } from '@angular/common/http';
 import { forkJoin, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export interface ApiMeal {
   idMeal: string;
@@ -73,7 +73,7 @@ interface ApiReply {
 export class RecipesService {
   baseUrl: string;
   constructor(private http: HttpClient) {
-    this.baseUrl = 'https://www.themealdb.com/api/json/v1/1';
+    this.baseUrl = environment.mealDBApiUrl;
   }
 
   getAll(params: { categoryName?: string; search?: string; ingredientName?: string }) {
@@ -144,7 +144,7 @@ export class RecipesService {
 
   create(title: string, externalId: string) {
     return this.http.post<{ id: string; title: string; externalId: string }>(
-      `http://localhost/api/auth/recipes`,
+      `${environment.backendApiUrl}/api/auth/recipes`,
       { title, external_id: externalId }
     );
   }

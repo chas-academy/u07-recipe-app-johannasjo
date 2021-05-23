@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 interface UserRecipe {
   id: string;
@@ -14,7 +15,7 @@ interface UserRecipe {
   providedIn: 'root'
 })
 export class RecipeFavoritesService {
-  baseUrl = 'http://localhost';
+  baseUrl = environment.backendApiUrl;
   public userRecipes$: BehaviorSubject<UserRecipe[]> = new BehaviorSubject([]);
   constructor(private snackBar: MatSnackBar, private router: Router, private http: HttpClient) {}
 

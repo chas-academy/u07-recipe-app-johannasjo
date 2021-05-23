@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
-import { catchError, filter, map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { Favorite } from './favorite.model';
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { Favorite } from './favorite.model';
 export class RecipeListsService {
   baseUrl: string;
   constructor(private http: HttpClient, private snackBar: MatSnackBar) {
-    this.baseUrl = 'http://localhost';
+    this.baseUrl = environment.backendApiUrl;
   }
 
   getAll() {

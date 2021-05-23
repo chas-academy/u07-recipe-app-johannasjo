@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { EMPTY, Subject, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 import { AuthData } from './auth-data.model';
 
@@ -19,7 +20,7 @@ export class AuthService {
   private token: string;
   private tokenTimer: any;
   private authStatusListener = new Subject<boolean>();
-  baseUrl = 'https://git.heroku.com/josjo-recipe-backend.git';
+  baseUrl = environment.backendApiUrl;
 
   constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) {}
 
@@ -37,7 +38,7 @@ export class AuthService {
 
   register(name: string, email: string, password: string) {
     const authData: AuthData = { name: name, email: email, password: password };
-    return this.http.post(`http://localhost/api/auth/register`, authData).pipe(
+    return this.http.post(`${this.baseUrl}/api/auth/register`, authData).pipe(
       catchError(err => {
         if (err.status === 400) {
           this.snackBar.open('This email is already connected to user!', undefined, {
@@ -52,7 +53,7 @@ export class AuthService {
   login(email: string, password: string) {
     const authData: AuthData = { email: email, password: password };
     this.http
-      .post<LoginApiReply>(`http://localhost/api/auth/login`, authData)
+      .post<LoginApiReply>(`${this.baseUrl}/api/auth/login`, authData)
       .pipe(
         catchError(err => {
           if (err.status === 401) {
