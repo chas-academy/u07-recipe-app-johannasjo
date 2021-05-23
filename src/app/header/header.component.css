@@ -1,8 +1,5 @@
-ul {
-  width: 100vw;
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
+.example-spacer {
+  flex: 1 1 auto;
 }
 
 a {
