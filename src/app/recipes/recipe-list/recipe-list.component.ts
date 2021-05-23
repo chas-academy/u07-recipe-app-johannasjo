@@ -72,7 +72,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   addRecipe(id: string, title: string, externalId: string) {
-    console.log({ component: 'RecipeListComponent', id, title, externalId });
     this.recipesService.create(title, externalId).subscribe(recipe => {
       this.recipeListsService.attach(id, recipe.id).subscribe();
     });

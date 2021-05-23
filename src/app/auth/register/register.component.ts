@@ -16,9 +16,7 @@ export class RegisterComponent implements OnInit {
     password: new FormControl('', [Validators.required])
   });
 
-  ngOnInit(): void {
-    console.log(this.registerForm.get('password').value);
-  }
+  ngOnInit(): void {}
 
   onRegister() {
     if (this.registerForm.invalid) {

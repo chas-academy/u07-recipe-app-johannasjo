@@ -24,7 +24,6 @@ export class RecipeListsService {
   }
 
   detach(id: string, recipeId: string) {
-    console.log({ component: 'RecipeListsService', id, recipeId });
     return this.http.delete(`${this.baseUrl}/api/auth/favorites/${id}/recipes/${recipeId}`).pipe(
       tap(response => {
         this.snackBar.open('Recipe was removed from your list!', undefined, {

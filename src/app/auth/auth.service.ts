@@ -74,7 +74,6 @@ export class AuthService {
           this.authStatusListener.next(true);
           const now = new Date();
           const expirationDate = new Date(now.getTime() + tokenExpiresIn * 1000);
-          console.log(expirationDate);
           this.saveAuthData(token, expirationDate);
           this.router.navigate(['/']);
         }
@@ -107,7 +106,6 @@ export class AuthService {
   }
 
   private setAuthTimer(duration: number) {
-    console.log('setting timer ' + duration);
     // log out user when token expires
     this.tokenTimer = setTimeout(
       () => {

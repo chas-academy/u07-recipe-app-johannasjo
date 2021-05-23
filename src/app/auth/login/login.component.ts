@@ -16,19 +16,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required])
   });
 
-  /*   getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-    return this.email.hasError('email') ? 'Not a valid email' : '';
-  } */
-
-  ngOnInit(): void {
-    // this.loginForm.statusChanges.subscribe(value => {
-    //   console.log(value);
-    //   console.log(this.loginForm.get('email'));
-    // });
-  }
+  ngOnInit(): void {}
 
   onLogin() {
     if (this.loginForm.invalid) {
@@ -36,7 +24,5 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.login(this.loginForm.get('email').value, this.loginForm.get('password').value);
-    // check if credentials match jwt response
-    // if not, route to register view
   }
 }

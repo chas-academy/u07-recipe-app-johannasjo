@@ -32,7 +32,6 @@ export class RecipeFavoriteListCardComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log({ component: 'RecipeFavoriteListCardComponent', changes });
     const recipeFavoriteListId = changes?.recipeFavoriteListId?.currentValue;
     if (recipeFavoriteListId) {
       this.recipeListsService
@@ -49,7 +48,6 @@ export class RecipeFavoriteListCardComponent implements OnInit, OnChanges {
           })
         )
         .subscribe(recipeFavoriteListRecipes => {
-          console.log({ recipeFavoriteListRecipes, component: 'RecipeFavoriteListCardComponent' });
           this.recipeFavoriteListRecipes = recipeFavoriteListRecipes;
         });
     }
