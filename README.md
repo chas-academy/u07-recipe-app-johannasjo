@@ -31,6 +31,22 @@ to get all dependencies
 - Use external API
 - Possible to use on mobile phone
 
-## Deploy to Netlify
+## Deploy to Heroku
+
+https://devcenter.heroku.com/articles/build-docker-images-heroku-yml
 
 1. Make sure the backend is set up first
+
+2. Create a Heroku account and login + install Heroku CLI
+
+```bash
+brew install heroku
+```
+
+3. Create new Heroku dyno and push it to Heroku
+
+```bash
+heroku create josjo-recipe-frontend
+heroku stack:set container
+git push heroku main
+```

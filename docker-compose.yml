@@ -3,4 +3,6 @@ services:
   web:
     build: .
     ports:
-      - '8081:80'
+      - '8081:8081'
+    environment:
+      - PORT=8081
