@@ -5,12 +5,6 @@
         <mat-card-title>{{ recipe.strMeal }}</mat-card-title>
       </mat-card-header>
       <img mat-card-image src="{{ recipe.strMealThumb }}" alt="" />
-      <!-- get properties of object and post to addRecipe function -->
-      <mat-action-row *ngIf="userIsAuthenticated">
-        <button mat-button (click)="addRecipe(recipe.idMeal, recipe.strMeal, recipe.strMealThumb)">
-          ADD
-        </button></mat-action-row
-      >>
     </div>
     <div class="ingredients">
       <h2>Ingredients</h2>

@@ -3,14 +3,13 @@ import { Component, Injectable, OnDestroy, OnInit } from '@angular/core';
 import { Meal } from '../meal.model';
 import { RecipesService } from '../recipes.service';
 import { ActivatedRoute } from '@angular/router';
-import { filter } from 'rxjs/operators';
-import { RecipeFavoritesService } from '../recipe-favorites.service';
+import { catchError, filter } from 'rxjs/operators';
 import { randomIntFromInterval } from 'src/app/utils';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Subscription, VirtualTimeScheduler } from 'rxjs';
+import { EMPTY, Subscription, throwError, VirtualTimeScheduler } from 'rxjs';
 import { RecipeListsService } from '../recipe-lists.service';
 import { Favorite } from '../favorite.model';
-import { FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +30,8 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     private recipesService: RecipesService,
     private recipeListsService: RecipeListsService,
     private route: ActivatedRoute,
-    private recipeFavoritesService: RecipeFavoritesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -72,8 +71,28 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   addRecipe(id: string, title: string, externalId: string) {
-    this.recipesService.create(title, externalId).subscribe(recipe => {
-      this.recipeListsService.attach(id, recipe.id).subscribe();
+    this.recipesService.getAllFromBackend().subscribe(recipes => {
+      const [foundRecipe] = recipes;
+      if (!foundRecipe) {
+        this.recipesService.create(title, externalId).subscribe(recipe => {
+          this.recipeListsService.attach(id, recipe.id).subscribe();
+        });
+      } else {
+        this.recipeListsService
+          .attach(id, foundRecipe.id)
+          .pipe(
+            catchError(err => {
+              if (err.status === 409) {
+                this.snackBar.open('The recipe already exists on the list', undefined, {
+                  duration: 5000
+                });
+                return EMPTY;
+              }
+              return throwError(err);
+            })
+          )
+          .subscribe();
+      }
     });
   }
 

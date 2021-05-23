@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Meal } from '../meal.model';
-import { RecipeFavoritesService } from '../recipe-favorites.service';
+import { RecipeListsService } from '../recipe-lists.service';
 import { RecipesService } from '../recipes.service';
 
 @Component({
@@ -19,7 +18,7 @@ export class RecipeViewComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private recipesService: RecipesService,
-    private recipeFavoritesService: RecipeFavoritesService,
+    private recipeListsService: RecipeListsService,
     private authService: AuthService
   ) {}
 
@@ -38,10 +37,6 @@ export class RecipeViewComponent implements OnInit, OnDestroy {
       .subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
       });
-  }
-
-  addRecipe(id: string, meal: string, image: string) {
-    this.recipeFavoritesService.add(id, meal, image);
   }
 
   ngOnDestroy(): void {

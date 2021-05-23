@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { tap } from 'rxjs/operators';
-import { RecipeFavoritesService } from '../recipe-favorites.service';
 import { RecipeListsService } from '../recipe-lists.service';
 @Component({
   selector: 'app-recipe-favorite-list',
@@ -10,10 +8,7 @@ import { RecipeListsService } from '../recipe-lists.service';
 })
 export class RecipeFavoriteListComponent implements OnInit {
   favorites = [];
-  constructor(
-    private recipeFavoritesService: RecipeFavoritesService,
-    private recipeListsService: RecipeListsService
-  ) {}
+  constructor(private recipeListsService: RecipeListsService) {}
 
   listName = new FormControl('', [Validators.required]);
 

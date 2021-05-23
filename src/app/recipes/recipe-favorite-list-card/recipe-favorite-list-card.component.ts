@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
-import { RecipeFavoritesService } from '../recipe-favorites.service';
 import { RecipeListsService } from '../recipe-lists.service';
 import { RecipesService } from '../recipes.service';
 
@@ -24,7 +23,6 @@ export class RecipeFavoriteListCardComponent implements OnInit, OnChanges {
   recipeFavoriteListRecipes: any[];
 
   constructor(
-    private recipeFavoritesService: RecipeFavoritesService,
     private recipeListsService: RecipeListsService,
     private recipesService: RecipesService
   ) {}

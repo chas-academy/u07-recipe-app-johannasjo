@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   mealDBApiUrl: 'https://www.themealdb.com/api/json/v1/1',
   backendApiUrl: 'https://josjo-recipe-backend.herokuapp.com'
+  // backendApiUrl: 'http://localhost:80'
 };
 
 /*

@@ -66,7 +66,11 @@ export interface ApiMeal {
 interface ApiReply {
   meals: ApiMeal[];
 }
-
+interface BackendRecipe {
+  id: string;
+  title: string;
+  externalId: string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -111,6 +115,18 @@ export class RecipesService {
       map(apiMeal => this.formatMealIngredientsMeasures(apiMeal))
     );
   }
+
+  getAllFromBackend(externalId?: string) {
+    let httpParams = new HttpParams();
+    if (externalId) {
+      httpParams = httpParams.set('external_id', externalId);
+    }
+
+    return this.http.get<BackendRecipe[]>(`${environment.backendApiUrl}/api/auth/recipes`, {
+      params: httpParams
+    });
+  }
+
   formatMealIngredientsMeasures(apiMeal: ApiMeal): Meal {
     const ingredientsMeasures = [];
     for (let i = 0; i <= 20; i++) {
