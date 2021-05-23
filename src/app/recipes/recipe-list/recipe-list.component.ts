@@ -71,7 +71,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   addRecipe(id: string, title: string, externalId: string) {
-    this.recipesService.getAllFromBackend().subscribe(recipes => {
+    this.recipesService.getAllFromBackend(externalId).subscribe(recipes => {
       const [foundRecipe] = recipes;
       if (!foundRecipe) {
         this.recipesService.create(title, externalId).subscribe(recipe => {
