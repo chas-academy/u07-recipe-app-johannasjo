@@ -37,6 +37,7 @@ export class AuthService {
   }
 
   register(name: string, email: string, password: string) {
+    console.log('URL', environment.backendApiUrl, this.baseUrl);
     const authData: AuthData = { name: name, email: email, password: password };
     return this.http.post(`${this.baseUrl}/api/auth/register`, authData).pipe(
       catchError(err => {

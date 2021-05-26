@@ -50,3 +50,5 @@ heroku create josjo-recipe-frontend
 heroku stack:set container
 git push heroku main
 ```
+
+4. Remember to push each change to Heroku!
